@@ -8,3 +8,5 @@
 /FamilieWandelPad/FamilieWandelPad/FamilieWandelPad.csproj.user
 /FamilieWandelPad/FamilieWandelPad.Android/FamilieWandelPad.Android.csproj.user
 /.vs/
+/FamilieWandelPad.Tests/bin/
+/FamilieWandelPad.Tests/obj/

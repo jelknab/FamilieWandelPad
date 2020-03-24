@@ -37,13 +37,8 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="UnsupportedPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets" />
+    <None Remove="Assets\navigationArrow.svg" />
+    <EmbeddedResource Include="Assets\navigationArrow.svg" />
   </ItemGroup>
 
   <ItemGroup>

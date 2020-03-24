@@ -1,5 +1,6 @@
 ﻿using Plugin.Geolocator;
 using System;
+using FamilieWandelPad.Pages;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,12 +11,19 @@ namespace FamilieWandelPad
     {
         
         public static SQLiteConnectionString MbTileConnectionString { get; set; }
-        
+        public static string NavigationArrow { get; set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = CrossGeolocator.IsSupported ? (Page)new MainPage() : (Page)new UnsupportedPage();
+            if (!CrossGeolocator.IsSupported)
+            {
+                MainPage = new UnsupportedPage();
+                return;
+            }
+            
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

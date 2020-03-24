@@ -147,5 +147,8 @@
     <Content Include="..\FamilieWandelPad\Assets\Kaag.mbtiles">
       <Link>Resources\Kaag.mbtiles</Link>
     </Content>
+    <Content Include="..\FamilieWandelPad\Assets\navigationArrow.svg">
+      <Link>Resources\navigationArrow.svg</Link>
+    </Content>
   </ItemGroup>
 </Project>

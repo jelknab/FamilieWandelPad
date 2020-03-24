@@ -2,17 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using FamilieWandelPad.Navigation.Route.waypoints;
+using System.Threading.Tasks;
 
 namespace FamilieWandelPad.navigation
 {
     public interface INavigator
     {
-        WayPoint FindStartingWaypoint();
-
-        WayPoint GetNextWaypoint(WayPoint currentWayPoint);
-
-        void NavigateTo(WayPoint target);
+        Task StartNavigation();
 
         void OnNavigationFinished();
 

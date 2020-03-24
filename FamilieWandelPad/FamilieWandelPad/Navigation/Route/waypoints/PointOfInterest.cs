@@ -4,7 +4,7 @@ namespace FamilieWandelPad.Navigation.Route.waypoints
 {
     public class PointOfInterest : WayPoint
     {
-        public PointOfInterest(float latitude, float longitude) : base(latitude, longitude)
+        public PointOfInterest(double latitude, double longitude) : base(latitude, longitude)
         {
         }
         
@@ -12,11 +12,9 @@ namespace FamilieWandelPad.Navigation.Route.waypoints
 
         public new void OnArrival(INavigator navigator)
         {
-            base.OnArrival(navigator);
+            base.OnArrival();
 
             //Todo: logic for showing information
         }
-
-        
     }
 }

@@ -1,23 +1,23 @@
+using System.Collections.Generic;
 using System.Linq;
-using FamilieWandelPad.navigation;
-using Mapsui.Forms.Extensions;
+using FamilieWandelPad.Navigation.Route;
 using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
-using Xamarin.Forms.Maps;
+using Plugin.Geolocator.Abstractions;
 
-namespace FamilieWandelPad.MapLayers
+namespace FamilieWandelPad.Map.MapLayers
 {
     public class PathLayer : MemoryLayer
     {
-        private readonly Route _route;
+        protected IEnumerable<Position> Path { get; set; }
 
-        public PathLayer(Route route)
+        public PathLayer(IEnumerable<Position> path, string name)
         {
-            _route = route;
-            Name = "Path";
+            Path = path;
+            Name = name;
             DataSource = new MemoryProvider(GetFeatures());
             Style = new VectorStyle
             {
@@ -30,12 +30,19 @@ namespace FamilieWandelPad.MapLayers
             };
         }
 
+        public void UpdatePath()
+        {
+            ClearCache();
+            ViewChanged(true, Envelope, 1);
+        }
+
         public LineString GetFeatures()
         {
             return new LineString
             {
-                Vertices = _route.Waypoints
-                    .Select(wp => SphericalMercator.FromLonLat(wp.Longitude, wp.Latitude)).ToList()
+                Vertices = Path
+                    .Select(position => SphericalMercator.FromLonLat(position.Longitude, position.Latitude))
+                    .ToList()
             };
         }
     }

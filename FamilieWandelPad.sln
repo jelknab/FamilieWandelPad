@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilieWandelPad.iOS", "Fam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilieWandelPad", "FamilieWandelPad\FamilieWandelPad\FamilieWandelPad.csproj", "{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilieWandelPad.Tests", "FamilieWandelPad.Tests\FamilieWandelPad.Tests.csproj", "{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|iPhone.Build.0 = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{AFB382D0-3EEE-4F07-B03C-D1A427E67E1C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

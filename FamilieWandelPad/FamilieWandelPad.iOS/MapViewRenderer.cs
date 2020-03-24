@@ -1,20 +1,21 @@
 ﻿using CoreGraphics;
 using FamilieWandelPad;
+using FamilieWandelPad.Map;
 using Foundation;
 using Mapsui.Forms.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(MapsUIView), typeof(MapViewRenderer))]
+[assembly: ExportRenderer(typeof(MapsUiView), typeof(MapViewRenderer))]
 namespace FamilieWandelPad.iOS
 {
     [Preserve(AllMembers = true)]
-    public class MapViewRenderer : ViewRenderer<MapsUIView, Mapsui.UI.iOS.MapControl>
+    public class MapViewRenderer : ViewRenderer<MapsUiView, Mapsui.UI.iOS.MapControl>
     {
         private Mapsui.UI.iOS.MapControl _mapNativeControl;
-        private MapsUIView _mapViewControl;
+        private MapsUiView _mapViewControl;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<MapsUIView> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<MapsUiView> e)
         {
             base.OnElementChanged(e);
 

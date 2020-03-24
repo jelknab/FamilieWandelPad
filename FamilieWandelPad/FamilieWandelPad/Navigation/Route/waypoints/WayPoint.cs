@@ -1,16 +1,16 @@
-﻿using FamilieWandelPad.navigation;
+﻿using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Navigation.Route.waypoints
 {
-    public class WayPoint : GPSCoordinate
+    public class WayPoint : Position
     {
-        public WayPoint(float latitude, float longitude) : base(latitude, longitude)
+        public WayPoint(double latitude, double longitude) : base(latitude, longitude)
         {
         }
 
-        public void OnArrival(INavigator navigator)
+        public void OnArrival()
         {
-            navigator.NavigateTo(navigator.GetNextWaypoint(this));
+            
         }
     }
 }
