@@ -1,30 +1,34 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BruTile.MbTiles;
 using FamilieWandelPad.Map.MapLayers;
-using FamilieWandelPad.navigation;
 using FamilieWandelPad.Navigation.Route;
 using FamilieWandelPad.Navigation.Route.waypoints;
-using Mapsui.Forms.Extensions;
+using Mapsui;
 using Mapsui.Layers;
+using Mapsui.Projection;
+using Mapsui.Widgets;
+using Mapsui.Widgets.ScaleBar;
+using Mapsui.Widgets.Zoom;
 using Plugin.Geolocator;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+using Navigator = FamilieWandelPad.navigation.Navigator;
 
 namespace FamilieWandelPad.Pages
 {
     public partial class MainPage
     {
-        private static readonly Route DebugRoute = new Route()
-        {
-            Waypoints = new List<WayPoint>()
+        private static readonly Route DebugRoute = new Route(
+            waypoints: new List<WayPoint>()
             {
-                new WayPoint(52.22002f, 4.55835f),
-                new WayPoint(52.21937f, 4.55812f),
-                new WayPoint(52.21944f, 4.55774f),
-                new WayPoint(52.21975f, 4.55711f),
-                new WayPoint(52.21985f, 4.55682f),
-            }
-        };
+                new WayPoint(52.22002, 4.55835),
+                new WayPoint(52.21937, 4.55812),
+                new PointOfInterest(52.21944, 4.55774) {Description = "debug"},
+                new WayPoint(52.21975, 4.55711),
+                new WayPoint(52.21985, 4.55682),
+            },
+            sections: null
+        );
 
         public Navigator Navigator { get; set; }
 
@@ -32,13 +36,16 @@ namespace FamilieWandelPad.Pages
         {
             InitializeComponent();
 
-            MapControl.NativeMap.Layers.Add(GetKaagTileLayer());
-            MapControl.NativeMap.Layers.Add(new PathLayer(DebugRoute.Waypoints, Consts.MainPathLayerName));
+            var map = MapControl.Map;
 
-            MapControl.NativeMap.NavigateTo(new Position(52.22002f, 4.55835f).ToMapsui());
-            MapControl.NativeMap.NavigateTo(0.5972);
+            map.Layers.Add(GetKaagTileLayer());
+            map.Layers.Add(
+                new PathLayer(
+                    DebugRoute.Waypoints,
+                    Consts.MainPathLayerName
+                )
+            );
         }
-
 
         protected override async void OnAppearing()
         {

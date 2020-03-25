@@ -1,8 +1,7 @@
 ﻿using CoreGraphics;
-using FamilieWandelPad;
+using FamilieWandelPad.iOS;
 using FamilieWandelPad.Map;
 using Foundation;
-using Mapsui.Forms.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -28,7 +27,7 @@ namespace FamilieWandelPad.iOS
             var rect = new CGRect(x, y, width, height);
 
             _mapNativeControl = new Mapsui.UI.iOS.MapControl(rect);
-            _mapNativeControl.Map = _mapViewControl.NativeMap;
+            _mapNativeControl.Map = _mapViewControl.Map;
             _mapNativeControl.Frame = rect;
 
             SetNativeControl(_mapNativeControl);

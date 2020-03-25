@@ -1,31 +1,35 @@
-﻿using Mapsui.Layers;
+﻿using System;
+using Mapsui;
+using Mapsui.Geometries;
+using Mapsui.Layers;
+using Mapsui.Projection;
 using Mapsui.Styles;
-using Plugin.Geolocator.Abstractions;
+using Mapsui.UI.Forms;
+using Position = Plugin.Geolocator.Abstractions.Position;
 
 namespace FamilieWandelPad.Map
 {
-    public class MapsUiView : Xamarin.Forms.View, INavigationMap
+    public class MapsUiView : MapView, INavigationMap
     {
-        public Mapsui.Map NativeMap { get; }
- 
         public MapsUiView()
         {
-            NativeMap = new Mapsui.Map {BackColor = Color.White};
+            Map = new Mapsui.Map
+            {
+                BackColor = Color.White,
+                Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.6)
+            };
+            
+            Navigator = new AnimatedNavigatorRot(Map, (IViewport) Viewport);
         }
-
-        public void Update()
+        
+        public void CenterView(Position position, double rotation)
         {
-            NativeMap.ViewChanged(true);
-        }
-
-        public void CenterView(Position position)
-        {
-            NativeMap.NavigateTo(position.ToMapSui());
+            ((AnimatedNavigatorRot) Navigator).NavigateTo(position.ToMapSui(), 0.6, 0, 1000L);
         }
 
         public void AddLayer(ILayer layer)
         {
-            NativeMap.Layers.Add(layer);
+            Map.Layers.Add(layer);
         }
     }
 }

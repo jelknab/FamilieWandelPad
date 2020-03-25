@@ -36,7 +36,7 @@ namespace FamilieWandelPad.Tests.Navigation
         [Fact]
         public void NoSectionsTest()
         {
-            FamilieWandelPad.Navigation.Route.Route route = new FamilieWandelPad.Navigation.Route.Route();
+            var route = new FamilieWandelPad.Navigation.Route.Route(null, null);
 
             var section = route.GetWaypointSection(new WayPoint(0, 0));
             

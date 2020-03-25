@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FamilieWandelPad.Map;
 using FamilieWandelPad.Map.MapLayers;
 using FamilieWandelPad.Navigation.Route;
 using FamilieWandelPad.Navigation.Route.waypoints;
+using Mapsui.Styles;
+using Mapsui.UI.Forms;
 using Plugin.Geolocator.Abstractions;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 using Position = Plugin.Geolocator.Abstractions.Position;
 
 namespace FamilieWandelPad.navigation
 {
     public class Navigator : INavigator
     {
-        private readonly Distance _maxOffCourseDistance = Distance.FromMeters(10);
-        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(5);
+        private readonly Distance _maxOffCourseDistance = Distance.FromMeters(20);
+        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(10);
 
         
         private readonly Route _route;
@@ -27,8 +28,9 @@ namespace FamilieWandelPad.navigation
         private List<WayPoint> VisitedWaypoints { get; set; }
         
         private WalkedPathLayer _walkedPathLayer;
-        private CurrentPositionLayer _positionLayer;
-        
+        private PositionLayer _positionLayer;
+        private PositionLayer _expectedPositionLayer;
+
         private Direction NavigationDirection { get; set; }
         public WayPoint LastWaypoint { get; private set; }
         public WayPoint NextWaypoint { get; private set; }
@@ -52,6 +54,7 @@ namespace FamilieWandelPad.navigation
 
             RouteEnumerator = _route.GetEnumerable(LastWaypoint, NavigationDirection).GetEnumerator();
             RouteEnumerator.MoveNext();
+            ActivateNextWaypoint();
 
             InitializeMap(position);
             
@@ -63,9 +66,29 @@ namespace FamilieWandelPad.navigation
             VisitedWaypoints = new List<WayPoint>() {LastWaypoint};
             _walkedPathLayer = new WalkedPathLayer(VisitedWaypoints, Consts.WalkedPathLayerName);
             _mapView.AddLayer(_walkedPathLayer);
+
             
-            _positionLayer = new CurrentPositionLayer(position);
+            _positionLayer = new PositionLayer(position, new SymbolStyle
+            {
+                Fill = new Brush(Color.FromString("#3366CC")),
+                SymbolScale = 0.25,
+                SymbolType = SymbolType.Ellipse
+            });
             _mapView.AddLayer(_positionLayer);
+            
+            _expectedPositionLayer = new PositionLayer(LastWaypoint, new SymbolStyle
+            {
+                BitmapId = GetBitMap("FamilieWandelPad.Assets.navigationArrow.svg"),
+                SymbolScale = 0.075,
+                RotateWithMap = true
+            });
+            _mapView.AddLayer(_expectedPositionLayer);
+        }
+
+        private int GetBitMap(string path)
+        {
+            var bitmapStream = typeof(Navigator).GetTypeInfo().Assembly.GetManifestResourceStream(path);
+            return BitmapRegistry.Instance.Register(bitmapStream);
         }
 
         private async Task StartListeningToLocationAsync()
@@ -81,15 +104,11 @@ namespace FamilieWandelPad.navigation
             var position = e.Position;
 
             var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(LastWaypoint, NextWaypoint, position);
-
-            if (!IsUserOnTrack(expectedPosition, position))
+            var onTrack = IsUserOnTrack(expectedPosition, position);
+            
+            if (!onTrack)
             {
                 //todo: warn user
-                _mapView.CenterView(position);
-            }
-            else
-            {
-                _mapView.CenterView(expectedPosition);
             }
 
             if (HasArrivedAtWaypoint(position))
@@ -100,16 +119,28 @@ namespace FamilieWandelPad.navigation
                 LastWaypoint.OnArrival();
             }
 
-            UpdateMap(position, expectedPosition);
+            UpdateMap(position, expectedPosition, onTrack);
         }
 
-        private void UpdateMap(Position position, Position expectedPosition)
+        private void UpdateMap(Position position, Position expectedPosition, bool onTrack)
         {
-            _walkedPathLayer.UpdatePath(expectedPosition);
-            _positionLayer.Update(position, 0);
+            var rotation = LastWaypoint.AngleTo(NextWaypoint);
+            if (onTrack)
+            {
+                _mapView.CenterView(expectedPosition, rotation);
+            }
+            else
+            {
+                _mapView.CenterView(position, 0);
+            }
             
-            _mapView.Update();
+            
+            _walkedPathLayer.UpdatePath(VisitedWaypoints.Append(expectedPosition));
+            
+            _positionLayer.Update(position, 0);
+            _expectedPositionLayer.Update(expectedPosition, rotation);
         }
+        
 
         private void ActivateNextWaypoint()
         {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FamilieWandelPad.navigation;
 using FamilieWandelPad.Navigation.Route.waypoints;
 using Plugin.Geolocator.Abstractions;
+using Xamarin.Forms.Internals;
 
 namespace FamilieWandelPad.Navigation.Route
 {
@@ -14,10 +15,16 @@ namespace FamilieWandelPad.Navigation.Route
         {
             Name = "Default"
         };
-        
+
         public List<WayPoint> Waypoints { get; set; }
         
         public List<Section> Sections { get; set; }
+
+        public Route(IReadOnlyCollection<WayPoint> waypoints, List<Section> sections)
+        {
+            Waypoints = waypoints.Append(waypoints.First()).ToList();
+            Sections = sections;
+        }
 
         public Section GetWaypointSection(WayPoint waypoint)
         {
@@ -63,7 +70,9 @@ namespace FamilieWandelPad.Navigation.Route
         
         public Direction DetermineLongestDirectionInSection(WayPoint startingWaypoint, Section currentSection)
         {
-            return new[] {Direction.Forward, Direction.Backward}
+            var directions = new [] {Direction.Forward, Direction.Backward};
+            
+            return directions
                 .OrderByDescending(direction =>
                 {
                     var wayPoints = GetEnumerable(startingWaypoint, direction)
@@ -84,6 +93,7 @@ namespace FamilieWandelPad.Navigation.Route
 
                     return distance;
                 })
+                .ThenBy(direction => directions.IndexOf(direction))
                 .First();
         }
     }

@@ -29,7 +29,7 @@ namespace FamilieWandelPad.Droid
 
             if (_mapNativeControl != null || _mapViewControl == null) return;
             
-            _mapNativeControl = new Mapsui.UI.Android.MapControl(Context, null) {Map = _mapViewControl.NativeMap};
+            _mapNativeControl = new Mapsui.UI.Android.MapControl(Context, null) {Map = _mapViewControl.Map};
 
             SetNativeControl(_mapNativeControl);
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FamilieWandelPad.Navigation.Route;
 using Mapsui.Geometries;
@@ -12,13 +13,16 @@ namespace FamilieWandelPad.Map.MapLayers
 {
     public class PathLayer : MemoryLayer
     {
-        protected IEnumerable<Position> Path { get; set; }
+        public Feature feature { get; set; }
 
         public PathLayer(IEnumerable<Position> path, string name)
         {
-            Path = path;
+            feature = new Feature
+            {
+                Geometry = RenderPath(path)
+            };
             Name = name;
-            DataSource = new MemoryProvider(GetFeatures());
+            DataSource = new MemoryProvider(this.feature);
             Style = new VectorStyle
             {
                 Enabled = true,
@@ -30,17 +34,19 @@ namespace FamilieWandelPad.Map.MapLayers
             };
         }
 
-        public void UpdatePath()
+        public void UpdatePath(IEnumerable<Position> path)
         {
-            ClearCache();
-            ViewChanged(true, Envelope, 1);
+            feature.RenderedGeometry.Clear();
+            feature.Geometry = RenderPath(path);
+            
+            DataHasChanged();
         }
 
-        public LineString GetFeatures()
+        private LineString RenderPath(IEnumerable<Position> path)
         {
             return new LineString
             {
-                Vertices = Path
+                Vertices = path
                     .Select(position => SphericalMercator.FromLonLat(position.Longitude, position.Latitude))
                     .ToList()
             };

@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Mapsui.Projection;
@@ -16,9 +17,9 @@ namespace FamilieWandelPad.Map
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public static Position ClosestPositionBetweenPoints(Position positionA, Position positionB, Position position)
         {
-            var a = new Vector2((float) positionA.Longitude, (float) positionA.Latitude);
-            var b = new Vector2((float) positionB.Longitude, (float) positionB.Latitude);
-            var p = new Vector2((float) position.Longitude, (float) position.Latitude);
+            var a = new Vector2((float) positionA.Latitude, (float) positionA.Longitude);
+            var b = new Vector2((float) positionB.Latitude, (float) positionB.Longitude);
+            var p = new Vector2((float) position.Latitude, (float) position.Longitude);
 
             var a_to_p = p - a; //Vector from A to P   
             var a_to_b = b - a; //Vector from A to B  
@@ -35,7 +36,7 @@ namespace FamilieWandelPad.Map
 
             if (double.IsNaN(distance))
                 distance = 0;
-            
+
             var result = a + a_to_b * distance;
             return new Position(result.X, result.Y);
         }
@@ -48,6 +49,11 @@ namespace FamilieWandelPad.Map
                 positionA.Latitude * percent + positionB.Latitude * percentInv,
                 positionA.Longitude * percent + positionB.Longitude * percentInv
             );
+        }
+
+        public static double AngleTo(this Position a, Position b)
+        {
+            return Math.Atan2(b.Longitude - a.Longitude, b.Latitude - a.Latitude) * (180/Math.PI);
         }
     }
 }
