@@ -22,7 +22,7 @@ namespace FamilieWandelPad.Navigation.Route
 
         public Route(IReadOnlyCollection<WayPoint> waypoints, List<Section> sections)
         {
-            Waypoints = waypoints.Append(waypoints.First()).ToList();
+            Waypoints = waypoints.Append(waypoints.FirstOrDefault()).ToList();
             Sections = sections;
         }
 
