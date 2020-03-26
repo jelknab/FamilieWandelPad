@@ -19,12 +19,12 @@ namespace FamilieWandelPad.Map
                 Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.6)
             };
             
-            Navigator = new AnimatedNavigatorRot(Map, (IViewport) Viewport);
+            Navigator = new AnimatedNavigator(Map, (IViewport) Viewport);
         }
         
         public void CenterView(Position position, double rotation)
         {
-            ((AnimatedNavigatorRot) Navigator).NavigateTo(position.ToMapSui(), 0.6, 0, 1000L);
+            ((AnimatedNavigator) Navigator).NavigateTo(position.ToMapSui(), Viewport.Resolution, 1000L);
         }
 
         public void AddLayer(ILayer layer)

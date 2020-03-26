@@ -54,6 +54,5 @@ namespace FamilieWandelPad.Map.MapLayers
             
             return new Features {LocationFeature};
         }
-
     }
 }

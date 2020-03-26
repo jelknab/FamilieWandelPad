@@ -67,7 +67,6 @@ namespace FamilieWandelPad.navigation
             _walkedPathLayer = new WalkedPathLayer(VisitedWaypoints, Consts.WalkedPathLayerName);
             _mapView.AddLayer(_walkedPathLayer);
 
-            
             _positionLayer = new PositionLayer(position, new SymbolStyle
             {
                 Fill = new Brush(Color.FromString("#3366CC")),

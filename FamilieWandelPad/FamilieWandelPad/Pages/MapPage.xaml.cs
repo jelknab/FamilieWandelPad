@@ -2,6 +2,7 @@
 using System.Linq;
 using BruTile.MbTiles;
 using FamilieWandelPad.Map.MapLayers;
+using FamilieWandelPad.navigation;
 using FamilieWandelPad.Navigation.Route;
 using FamilieWandelPad.Navigation.Route.waypoints;
 using Mapsui;
@@ -41,7 +42,7 @@ namespace FamilieWandelPad.Pages
             map.Layers.Add(GetKaagTileLayer());
             map.Layers.Add(
                 new PathLayer(
-                    DebugRoute.Waypoints,
+                    DebugRoute.GetEnumerable(DebugRoute.Waypoints.First(), Direction.Forward),
                     Consts.MainPathLayerName
                 )
             );

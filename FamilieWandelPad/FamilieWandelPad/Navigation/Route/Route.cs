@@ -20,9 +20,9 @@ namespace FamilieWandelPad.Navigation.Route
         
         public List<Section> Sections { get; set; }
 
-        public Route(IReadOnlyCollection<WayPoint> waypoints, List<Section> sections)
+        public Route(List<WayPoint> waypoints, List<Section> sections)
         {
-            Waypoints = waypoints.Append(waypoints.FirstOrDefault()).ToList();
+            Waypoints = waypoints;
             Sections = sections;
         }
 
@@ -47,6 +47,8 @@ namespace FamilieWandelPad.Navigation.Route
                 yield return Waypoints[index];
                 if (++index == Waypoints.Count) index = 0;
             } while (index != startIndex);
+            
+            yield return start;
         }
         
         private IEnumerable<WayPoint> GetBackwardEnumerable(WayPoint start)
@@ -59,6 +61,8 @@ namespace FamilieWandelPad.Navigation.Route
                 yield return Waypoints[index];
                 if (--index < 0) index = Waypoints.Count - 1;
             } while (index != startIndex);
+
+            yield return start;
         }
 
         public WayPoint FindClosestWaypoint(Position position)

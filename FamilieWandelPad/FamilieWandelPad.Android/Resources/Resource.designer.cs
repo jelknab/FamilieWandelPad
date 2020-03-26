@@ -1238,6 +1238,7 @@ namespace FamilieWandelPad.Droid
 			global::SkiaSharp.Views.Forms.Resource.Id.main_appbar = global::FamilieWandelPad.Droid.Resource.Id.main_appbar;
 			global::SkiaSharp.Views.Forms.Resource.Id.main_tablayout = global::FamilieWandelPad.Droid.Resource.Id.main_tablayout;
 			global::SkiaSharp.Views.Forms.Resource.Id.main_toolbar = global::FamilieWandelPad.Droid.Resource.Id.main_toolbar;
+			global::SkiaSharp.Views.Forms.Resource.Id.main_viewpager = global::FamilieWandelPad.Droid.Resource.Id.main_viewpager;
 			global::SkiaSharp.Views.Forms.Resource.Id.masked = global::FamilieWandelPad.Droid.Resource.Id.masked;
 			global::SkiaSharp.Views.Forms.Resource.Id.media_actions = global::FamilieWandelPad.Droid.Resource.Id.media_actions;
 			global::SkiaSharp.Views.Forms.Resource.Id.message = global::FamilieWandelPad.Droid.Resource.Id.message;
@@ -1681,6 +1682,7 @@ namespace FamilieWandelPad.Droid
 			global::SkiaSharp.Views.Forms.Resource.Style.CardView = global::FamilieWandelPad.Droid.Resource.Style.CardView;
 			global::SkiaSharp.Views.Forms.Resource.Style.CardView_Dark = global::FamilieWandelPad.Droid.Resource.Style.CardView_Dark;
 			global::SkiaSharp.Views.Forms.Resource.Style.CardView_Light = global::FamilieWandelPad.Droid.Resource.Style.CardView_Light;
+			global::SkiaSharp.Views.Forms.Resource.Style.collectionViewStyle = global::FamilieWandelPad.Droid.Resource.Style.collectionViewStyle;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_AppCompat = global::FamilieWandelPad.Droid.Resource.Style.Platform_AppCompat;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_AppCompat_Light = global::FamilieWandelPad.Droid.Resource.Style.Platform_AppCompat_Light;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_MaterialComponents = global::FamilieWandelPad.Droid.Resource.Style.Platform_MaterialComponents;
