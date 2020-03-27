@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using FamilieWandelPad.navigation;
-using FamilieWandelPad.Navigation.Route.waypoints;
-using Plugin.Geolocator.Abstractions;
+using System.Linq;
 
-namespace FamilieWandelPad.Navigation.Route
+namespace FamilieWandelPad.Database.Model
 {
     public class Section
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
         
-        public List<Position> Polygon { get; set; }
+        public string Name { get; set; }
 
-        public bool IsPointInSection(Position point)
+        public List<GeoPosition> Polygon { get; set; }
+
+        public bool IsPointInSection(GeoPosition point)
         {
             var pointInPolygon = false;
 
@@ -24,14 +24,26 @@ namespace FamilieWandelPad.Navigation.Route
                 if (Polygon[i].Latitude > y != Polygon[j].Latitude > y
                     && x < Polygon[i].Longitude + (Polygon[j].Longitude - Polygon[i].Longitude) *
                     (y - Polygon[i].Latitude) / (Polygon[j].Latitude - Polygon[i].Latitude))
-                {
                     pointInPolygon = !pointInPolygon;
-                }
 
                 j = i;
             }
 
             return pointInPolygon;
+        }
+
+        public void PrepareForSaving()
+        {
+            Polygon.ForEach(point =>
+            {
+                point.OrderIndex = Polygon.IndexOf(point);
+                point.Id = 0;
+            });
+        }
+
+        public void RecoverFromLoading()
+        {
+            Polygon = Polygon.OrderBy(position => position.OrderIndex).ToList();
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Java.IO;
 using Plugin.CurrentActivity;
+using Plugin.Permissions;
 using SQLite;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+using Platform = Xamarin.Essentials.Platform;
 
 namespace FamilieWandelPad.Droid
 {
-    [Activity(Label = "FamilieWandelPad", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "FamilieWandelPad", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,17 +23,19 @@ namespace FamilieWandelPad.Droid
 
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
 
-            App.MbTileConnectionString = new SQLiteConnectionString(FileAccessHelper.MakeAssetAvailable("Kaag.mbtiles"));
-            
+            App.MbTileConnectionString =
+                new SQLiteConnectionString(FileAccessHelper.MakeAssetAvailable("Kaag.mbtiles"));
+
             LoadApplication(new App());
         }
-        
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
+            Permission[] grantResults)
         {
-            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
