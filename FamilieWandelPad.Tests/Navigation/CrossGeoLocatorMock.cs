@@ -6,8 +6,14 @@ using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Tests.Navigation
 {
-    public class CrossGeoLocatorMock :  IGeolocator
+    public class CrossGeoLocatorMock : IGeolocator
     {
+        public CrossGeoLocatorMock(Position start)
+        {
+            Position = start;
+        }
+
+        public Position Position { get; set; }
         public double DesiredAccuracy { get; set; }
         public bool IsListening { get; set; }
         public bool SupportsHeading { get; }
@@ -15,26 +21,14 @@ namespace FamilieWandelPad.Tests.Navigation
         public bool IsGeolocationEnabled { get; }
         public event EventHandler<PositionErrorEventArgs> PositionError;
         public event EventHandler<PositionEventArgs> PositionChanged;
-        
-        public Position Position { get; set; }
-
-        public CrossGeoLocatorMock(Position start)
-        {
-            Position = start;
-        }
-
-        public void UpdatePosition(Position position)
-        {
-            Position = position;
-            PositionChanged?.Invoke(this, new PositionEventArgs(position));
-        }
 
         public async Task<Position> GetLastKnownLocationAsync()
         {
             return Position;
         }
 
-        public async Task<Position> GetPositionAsync(TimeSpan? timeout = null, CancellationToken? token = null, bool includeHeading = false)
+        public async Task<Position> GetPositionAsync(TimeSpan? timeout = null, CancellationToken? token = null,
+            bool includeHeading = false)
         {
             return Position;
         }
@@ -49,7 +43,8 @@ namespace FamilieWandelPad.Tests.Navigation
             throw new NotImplementedException();
         }
 
-        public async Task<bool> StartListeningAsync(TimeSpan minimumTime, double minimumDistance, bool includeHeading = false,
+        public async Task<bool> StartListeningAsync(TimeSpan minimumTime, double minimumDistance,
+            bool includeHeading = false,
             ListenerSettings listenerSettings = null)
         {
             IsListening = true;
@@ -59,6 +54,12 @@ namespace FamilieWandelPad.Tests.Navigation
         public Task<bool> StopListeningAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public void UpdatePosition(Position position)
+        {
+            Position = position;
+            PositionChanged?.Invoke(this, new PositionEventArgs(position));
         }
     }
 }

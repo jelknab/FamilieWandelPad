@@ -1,14 +1,12 @@
-using FamilieWandelPad.Map.MapLayers;
-using Mapsui.Geometries;
+using FamilieWandelPad.Database.Model;
 using Mapsui.Layers;
-using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Map
 {
     public interface INavigationMap
     {
-        void CenterView(Position position, double rotation);
-        
+        void CenterView(GeoPosition position, double rotation);
+
         void AddLayer(ILayer layer);
     }
 }

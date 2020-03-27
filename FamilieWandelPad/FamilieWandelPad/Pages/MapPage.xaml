@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:FamilieWandelPad.Map;assembly=FamilieWandelPad"
@@ -7,12 +8,12 @@
     <ContentPage.Content>
         <Grid x:Name="ContentGrid">
             <StackLayout>
-                <map:MapsUiView 
+                <map:MapsUiView
                     x:Name="MapControl"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="Fill"
                     BackgroundColor="Gray" />
-                
+
                 <Grid Padding="20, 0, 20, 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25" />
@@ -22,7 +23,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Label Text="Distance travelled" Grid.Row="0" Grid.Column="0" />
                     <Label Text="0.00km" Grid.Row="1" Grid.Column="0" />
                     <Button Text="?" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />

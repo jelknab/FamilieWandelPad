@@ -3,5 +3,6 @@
   &lt;Assembly Path="C:\Users\Jelle\.nuget\packages\sqlite-net-pcl\1.6.292\lib\netstandard1.1\SQLite-net.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\Jelle Metzlar\.nuget\packages\mapsui\2.0.0-beta.38\lib\netstandard2.0\Mapsui.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\Jelle Metzlar\.nuget\packages\mapsui\2.0.0-beta.39\lib\netstandard2.0\Mapsui.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\Jelle Metzlar\RiderProjects\FamilieWandelPad\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.UI.Wpf.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Waypoint/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

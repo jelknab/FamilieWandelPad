@@ -1,23 +1,21 @@
-﻿
-
-using Android.Content;
-using FamilieWandelPad;
+﻿using Android.Content;
 using FamilieWandelPad.Droid;
 using FamilieWandelPad.Map;
+using Mapsui.UI.Android;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(MapsUiView), typeof(MapViewRenderer))]
+
 namespace FamilieWandelPad.Droid
 {
-    public class MapViewRenderer : ViewRenderer<MapsUiView, Mapsui.UI.Android.MapControl>
+    public class MapViewRenderer : ViewRenderer<MapsUiView, MapControl>
     {
-        private Mapsui.UI.Android.MapControl _mapNativeControl;
+        private MapControl _mapNativeControl;
         private MapsUiView _mapViewControl;
 
         public MapViewRenderer(Context context) : base(context)
         {
-
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<MapsUiView> e)
@@ -28,8 +26,8 @@ namespace FamilieWandelPad.Droid
                 _mapViewControl = e.NewElement;
 
             if (_mapNativeControl != null || _mapViewControl == null) return;
-            
-            _mapNativeControl = new Mapsui.UI.Android.MapControl(Context, null) {Map = _mapViewControl.Map};
+
+            _mapNativeControl = new MapControl(Context, null) {Map = _mapViewControl.Map};
 
             SetNativeControl(_mapNativeControl);
         }

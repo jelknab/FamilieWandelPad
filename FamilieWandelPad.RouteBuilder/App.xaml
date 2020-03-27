@@ -1,7 +1,7 @@
-﻿<Application x:Class="FamilieWandelPad.RouteDesigner.App"
+﻿<Application x:Class="FamilieWandelPad.RouteBuilder.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FamilieWandelPad.RouteDesigner"
+             xmlns:local="clr-namespace:FamilieWandelPad.RouteBuilder"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

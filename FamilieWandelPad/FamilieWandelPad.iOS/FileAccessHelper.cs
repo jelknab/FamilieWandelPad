@@ -6,24 +6,24 @@ namespace FamilieWandelPad.iOS
 {
     public class FileAccessHelper
     {
-        public static string MakeAssetAvailable (string filename)
+        public static string MakeAssetAvailable(string filename)
         {
-            var docFolder = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-            var libFolder = Path.Combine (docFolder, "..", "Library", "Databases");
+            var docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
 
-            if (!Directory.Exists (libFolder)) Directory.CreateDirectory (libFolder);
-            
-            var dbPath = Path.Combine (libFolder, filename);
+            if (!Directory.Exists(libFolder)) Directory.CreateDirectory(libFolder);
+
+            var dbPath = Path.Combine(libFolder, filename);
 
             CopyFile(dbPath);
 
             return dbPath;
         }
 
-        private static void CopyFile (string dbPath)
+        private static void CopyFile(string dbPath)
         {
-            var existingDb = NSBundle.MainBundle.PathForResource ("people", "db3");
-            File.Copy (existingDb, dbPath);
+            var existingDb = NSBundle.MainBundle.PathForResource("people", "db3");
+            File.Copy(existingDb, dbPath);
         }
     }
 }

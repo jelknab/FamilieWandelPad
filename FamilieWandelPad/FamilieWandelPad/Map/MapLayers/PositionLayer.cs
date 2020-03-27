@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using System.Reflection;
-using BruTile;
-using Mapsui.Geometries;
+using FamilieWandelPad.Database.Model;
 using Mapsui.Layers;
 using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
-using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Map.MapLayers
 {
@@ -14,13 +11,7 @@ namespace FamilieWandelPad.Map.MapLayers
     {
         private readonly SymbolStyle _style;
 
-        public Position Position { get; set; }
-        public double Rotation { get; set; } = 0;
-        
-        private int BitMapId { get; }
-        private Feature LocationFeature { get; set; }
-        
-        public PositionLayer(Position originalPosition, SymbolStyle style)
+        public PositionLayer(GeoPosition originalPosition, SymbolStyle style)
         {
             _style = style;
             Position = originalPosition;
@@ -28,16 +19,22 @@ namespace FamilieWandelPad.Map.MapLayers
             DataSource = new MemoryProvider(GetFeatures());
             Style = null;
         }
-        
-        public void Update(Position position, double rotation)
+
+        public GeoPosition Position { get; set; }
+        public double Rotation { get; set; }
+
+        private int BitMapId { get; }
+        private Feature LocationFeature { get; set; }
+
+        public void Update(GeoPosition position, double rotation)
         {
             Position = position;
             Rotation = rotation;
-            
+
             LocationFeature.RenderedGeometry.Clear();
             LocationFeature.Geometry = SphericalMercator.FromLonLat(Position.Longitude, Position.Latitude);
             _style.SymbolRotation = rotation;
-            
+
             DataHasChanged();
         }
 
@@ -51,7 +48,7 @@ namespace FamilieWandelPad.Map.MapLayers
                     _style
                 }
             };
-            
+
             return new Features {LocationFeature};
         }
     }

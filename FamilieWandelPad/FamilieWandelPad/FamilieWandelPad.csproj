@@ -17,8 +17,8 @@
     <PackageReference Include="Mapsui.Forms" Version="2.0.0-beta.39" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.6.2-beta" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,5 +48,10 @@
     <None Update="Assets\Kaag.mbtiles">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FamilieWandelPad.Database\FamilieWandelPad.Database.csproj" />
+    <ProjectReference Include="..\..\FamilieWandelPad.EntityFramework\FamilieWandelPad.EntityFramework.csproj" />
   </ItemGroup>
 </Project>

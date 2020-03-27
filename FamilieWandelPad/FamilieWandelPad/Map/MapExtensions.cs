@@ -1,21 +1,22 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using FamilieWandelPad.Database.Model;
+using Mapsui.Geometries;
 using Mapsui.Projection;
-using Plugin.Geolocator.Abstractions;
-using Point = Mapsui.Geometries.Point;
 
 namespace FamilieWandelPad.Map
 {
     public static class MapExtensions
     {
-        public static Point ToMapSui(this Position position)
+        public static Point ToMapSui(this GeoPosition position)
         {
             return SphericalMercator.FromLonLat(position.Longitude, position.Latitude);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public static Position ClosestPositionBetweenPoints(Position positionA, Position positionB, Position position)
+        public static GeoPosition ClosestPositionBetweenPoints(GeoPosition positionA, GeoPosition positionB,
+            GeoPosition position)
         {
             var a = new Vector2((float) positionA.Latitude, (float) positionA.Longitude);
             var b = new Vector2((float) positionB.Latitude, (float) positionB.Longitude);
@@ -38,22 +39,22 @@ namespace FamilieWandelPad.Map
                 distance = 0;
 
             var result = a + a_to_b * distance;
-            return new Position(result.X, result.Y);
+            return new GeoPosition(result.X, result.Y);
         }
 
-        public static Position InterpolatePosition(Position positionA, Position positionB, double percent)
+        public static GeoPosition InterpolatePosition(GeoPosition positionA, GeoPosition positionB, double percent)
         {
             var percentInv = 1 - percent;
 
-            return new Position(
+            return new GeoPosition(
                 positionA.Latitude * percent + positionB.Latitude * percentInv,
                 positionA.Longitude * percent + positionB.Longitude * percentInv
             );
         }
 
-        public static double AngleTo(this Position a, Position b)
+        public static double AngleTo(this GeoPosition a, GeoPosition b)
         {
-            return Math.Atan2(b.Longitude - a.Longitude, b.Latitude - a.Latitude) * (180/Math.PI);
+            return Math.Atan2(b.Longitude - a.Longitude, b.Latitude - a.Latitude) * (180 / Math.PI);
         }
     }
 }

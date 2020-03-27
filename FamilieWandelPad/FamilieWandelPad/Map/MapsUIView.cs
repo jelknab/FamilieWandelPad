@@ -1,11 +1,9 @@
-﻿using System;
+﻿using FamilieWandelPad.Database.Model;
 using Mapsui;
-using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Projection;
 using Mapsui.Styles;
 using Mapsui.UI.Forms;
-using Position = Plugin.Geolocator.Abstractions.Position;
 
 namespace FamilieWandelPad.Map
 {
@@ -18,11 +16,11 @@ namespace FamilieWandelPad.Map
                 BackColor = Color.White,
                 Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.6)
             };
-            
+
             Navigator = new AnimatedNavigator(Map, (IViewport) Viewport);
         }
-        
-        public void CenterView(Position position, double rotation)
+
+        public void CenterView(GeoPosition position, double rotation)
         {
             ((AnimatedNavigator) Navigator).NavigateTo(position.ToMapSui(), Viewport.Resolution, 1000L);
         }

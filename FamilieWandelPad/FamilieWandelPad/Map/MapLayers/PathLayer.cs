@@ -1,21 +1,17 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using FamilieWandelPad.Navigation.Route;
+using FamilieWandelPad.Database.Model;
 using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
-using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Map.MapLayers
 {
     public class PathLayer : MemoryLayer
     {
-        public Feature feature { get; set; }
-
-        public PathLayer(IEnumerable<Position> path, string name)
+        public PathLayer(IEnumerable<GeoPosition> path, string name)
         {
             feature = new Feature
             {
@@ -34,15 +30,17 @@ namespace FamilieWandelPad.Map.MapLayers
             };
         }
 
-        public void UpdatePath(IEnumerable<Position> path)
+        public Feature feature { get; set; }
+
+        public void UpdatePath(IEnumerable<GeoPosition> path)
         {
             feature.RenderedGeometry.Clear();
             feature.Geometry = RenderPath(path);
-            
+
             DataHasChanged();
         }
 
-        private LineString RenderPath(IEnumerable<Position> path)
+        private LineString RenderPath(IEnumerable<GeoPosition> path)
         {
             return new LineString
             {

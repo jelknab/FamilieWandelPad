@@ -1,16 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
-using Mapsui.Geometries;
-using Mapsui.Projection;
-using Mapsui.Providers;
+using FamilieWandelPad.Database.Model;
 using Mapsui.Styles;
-using Plugin.Geolocator.Abstractions;
 
 namespace FamilieWandelPad.Map.MapLayers
 {
     public class WalkedPathLayer : PathLayer
     {
-        public WalkedPathLayer(IEnumerable<Position> path, string name) : base(path, name)
+        public WalkedPathLayer(IEnumerable<GeoPosition> path, string name) : base(path, name)
         {
             Style = new VectorStyle
             {
@@ -20,7 +16,7 @@ namespace FamilieWandelPad.Map.MapLayers
                     PenStyle = PenStyle.Solid,
                     Width = 3.1d
                 }
-            }; 
+            };
         }
     }
 }
