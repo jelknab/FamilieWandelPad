@@ -16,6 +16,7 @@ namespace FamilieWandelPad.Database.Repositories
                 var route = context.Route
                                 .Include(r => r.Sections).ThenInclude(s => s.Polygon)
                                 .Include(r => r.Waypoints)
+                                .ThenInclude(poi => (poi as PointOfInterest).Translations)
                                 .FirstOrDefault()
                             ??
                             new Route()

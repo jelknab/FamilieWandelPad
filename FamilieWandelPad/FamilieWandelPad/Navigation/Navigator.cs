@@ -46,10 +46,9 @@ namespace FamilieWandelPad.navigation
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
 
             LastWaypoint = _route.FindClosestWaypoint(position);
-            NextWaypoint = LastWaypoint;
 
-            var section = _route.GetWaypointSection(NextWaypoint);
-            NavigationDirection = _route.DetermineLongestDirectionInSection(NextWaypoint, section);
+            var section = _route.GetWaypointSection(LastWaypoint);
+            NavigationDirection = _route.DetermineLongestDirectionInSection(LastWaypoint, section);
 
             RouteEnumerator = _route.GetEnumerable(LastWaypoint, NavigationDirection).GetEnumerator();
             RouteEnumerator.MoveNext();
@@ -82,7 +81,7 @@ namespace FamilieWandelPad.navigation
 
                 VisitedWaypoints.Add(LastWaypoint);
 
-                if (LastWaypoint is PointOfInterest) ShowPointOfInterestModal(LastWaypoint as PointOfInterest);
+                if (LastWaypoint is PointOfInterest poi) ShowPointOfInterestModal(poi);
             }
 
             UpdateMap(position, expectedPosition, onTrack);

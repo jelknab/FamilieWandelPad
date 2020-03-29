@@ -295,14 +295,18 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="PoiWindow.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Map\Features\IWithContextMenuOptions.cs" />
         <Compile Include="Map\Features\PointOfInterestFeature.cs" />
         <Compile Include="Map\Features\WaypointFeature.cs" />
-        <Compile Include="Map\IHasContext.cs" />
         <Compile Include="Map\IMap.cs" />
         <Compile Include="Map\RouteLayer.cs" />
         <Compile Include="Map\RoutePointsLayer.cs" />
+        <Compile Include="PoiWindow.xaml.cs">
+          <DependentUpon>PoiWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
         </Compile>

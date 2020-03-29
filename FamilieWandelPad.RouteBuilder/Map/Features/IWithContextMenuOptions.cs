@@ -1,8 +1,7 @@
 using System.Windows.Controls;
-using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.RouteBuilder.Editing;
 
-namespace FamilieWandelPad.RouteBuilder.Map
+namespace FamilieWandelPad.RouteBuilder.Map.Features
 {
     public interface IHasContext
     {

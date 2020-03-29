@@ -6,6 +6,7 @@ using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.RouteBuilder.Editing;
 using FamilieWandelPad.RouteBuilder.Map;
+using FamilieWandelPad.RouteBuilder.Map.Features;
 using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Projection;
@@ -38,7 +39,6 @@ namespace FamilieWandelPad.RouteBuilder
             MapControl.Map.Layers.Add(GetKaagTileLayer());
             MapControl.Map.Layers.Add(RouteLayer);
             MapControl.Map.Layers.Add(RoutePointsLayer);
-            MapControl.Info += (sender, args) => { };
 
             MapControl.MouseRightButtonDown += (sender, args) =>
             {
@@ -57,12 +57,7 @@ namespace FamilieWandelPad.RouteBuilder
                     cm.Items.Add(MoveWaypointMenuItem(position));
                 }
 
-                var saveMenuItem = new MenuItem()
-                {
-                    Header = "Save"
-                };
-                saveMenuItem.Click += (o, eventArgs) => { RouteController.Save(); };
-                cm.Items.Add(saveMenuItem);
+                cm.Items.Add(SaveRouteMenuItem());
                 
                 cm.IsOpen = true;
             };
@@ -92,6 +87,17 @@ namespace FamilieWandelPad.RouteBuilder
                 RouteController.MoveWaypoint(position);
             };
             return wayPointMenuItem;
+        }
+        
+        private MenuItem SaveRouteMenuItem()
+        {
+            var saveMenuItem = new MenuItem()
+            {
+                Header = "Save"
+            };
+            saveMenuItem.Click += (o, eventArgs) => { RouteController.Save(); };
+            
+            return saveMenuItem;
         }
 
         public TileLayer GetKaagTileLayer()
