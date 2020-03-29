@@ -45,7 +45,7 @@ namespace FamilieWandelPad.Map.MapLayers
             return new LineString
             {
                 Vertices = path
-                    .Select(position => SphericalMercator.FromLonLat(position.Longitude, position.Latitude))
+                    .Select(position => position.ToMapSui())
                     .ToList()
             };
         }

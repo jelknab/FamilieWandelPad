@@ -43,7 +43,7 @@ namespace FamilieWandelPad.RouteBuilder.Map
             return new LineString
             {
                 Vertices = route.Waypoints
-                    .Select(wp => SphericalMercator.FromLonLat(wp.Latitude, wp.Longitude))
+                    .Select(wp => SphericalMercator.FromLonLat(wp.Longitude, wp.Latitude))
                     .ToList()
             };
         }

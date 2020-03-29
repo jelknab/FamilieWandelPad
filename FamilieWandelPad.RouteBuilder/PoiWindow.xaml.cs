@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.Database.Model.waypoints;
+using FamilieWandelPad.RouteBuilder.Controllers;
 using FamilieWandelPad.RouteBuilder.Editing;
 using Microsoft.Win32;
 

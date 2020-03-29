@@ -25,6 +25,8 @@ namespace FamilieWandelPad.iOS
 
             App.MbTileConnectionString =
                 new SQLiteConnectionString(FileAccessHelper.MakeAssetAvailable("Kaag.mbtiles"));
+            
+            App.RouteFile = FileAccessHelper.MakeAssetAvailable("route.sqlite");
 
             LoadApplication(new App());
 

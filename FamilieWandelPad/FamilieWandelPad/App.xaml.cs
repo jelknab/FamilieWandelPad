@@ -21,6 +21,7 @@ namespace FamilieWandelPad
         }
 
         public static SQLiteConnectionString MbTileConnectionString { get; set; }
+        public static string RouteFile { get; set; }
 
         protected override void OnStart()
         {

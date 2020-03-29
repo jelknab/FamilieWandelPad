@@ -47,23 +47,23 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="Mapsui, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.dll</HintPath>
+          <HintPath>..\packages\Mapsui.2.0.0-rc.1\lib\net461\Mapsui.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="Mapsui.Geometries, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.Geometries.dll</HintPath>
+          <HintPath>..\packages\Mapsui.2.0.0-rc.1\lib\net461\Mapsui.Geometries.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="Mapsui.Rendering.Skia, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.Rendering.Skia.dll</HintPath>
+          <HintPath>..\packages\Mapsui.2.0.0-rc.1\lib\net461\Mapsui.Rendering.Skia.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="Mapsui.Rendering.Xaml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.Rendering.Xaml.dll</HintPath>
+          <HintPath>..\packages\Mapsui.2.0.0-rc.1\lib\net461\Mapsui.Rendering.Xaml.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="Mapsui.UI.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>..\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.UI.Wpf.dll</HintPath>
+          <HintPath>..\packages\Mapsui.2.0.0-rc.1\lib\net461\Mapsui.UI.Wpf.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.Data.Sqlite, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
@@ -156,7 +156,7 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.1.68.2-preview.39\lib\net45\SkiaSharp.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.1.68.2-preview.45\lib\net45\SkiaSharp.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Extended.Svg, Version=1.60.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
@@ -164,23 +164,23 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Views.Desktop, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.Views.1.68.2-preview.39\lib\net45\SkiaSharp.Views.Desktop.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.Views.1.68.2-preview.45\lib\net45\SkiaSharp.Views.Desktop.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Views.Desktop.Common, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.Views.Desktop.Common.1.68.2-preview.39\lib\net45\SkiaSharp.Views.Desktop.Common.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.Views.Desktop.Common.1.68.2-preview.45\lib\net45\SkiaSharp.Views.Desktop.Common.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Views.Gtk, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.Views.Gtk2.1.68.2-preview.39\lib\net45\SkiaSharp.Views.Gtk.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.Views.Gtk2.1.68.2-preview.45\lib\net45\SkiaSharp.Views.Gtk.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Views.WindowsForms, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.Views.WindowsForms.1.68.2-preview.39\lib\net45\SkiaSharp.Views.WindowsForms.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.Views.WindowsForms.1.68.2-preview.45\lib\net45\SkiaSharp.Views.WindowsForms.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SkiaSharp.Views.WPF, Version=1.68.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-          <HintPath>..\packages\SkiaSharp.Views.WPF.1.68.2-preview.39\lib\net45\SkiaSharp.Views.WPF.dll</HintPath>
+          <HintPath>..\packages\SkiaSharp.Views.WPF.1.68.2-preview.45\lib\net45\SkiaSharp.Views.WPF.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="SQLite-net, Version=1.6.292.0, Culture=neutral, PublicKeyToken=null">
@@ -289,8 +289,12 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="Editing\IRouteController.cs" />
-        <Compile Include="Editing\RouteController.cs" />
+        <Compile Include="Controllers\IRouteController.cs" />
+        <Compile Include="Controllers\RouteController.cs" />
+        <Compile Include="Editing\DefaultEditor.cs" />
+        <Compile Include="Editing\IEditor.cs" />
+        <Compile Include="Editing\SectionEditor.cs" />
+        <Compile Include="Editing\WaypointEditor.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
@@ -298,12 +302,15 @@
         <Page Include="PoiWindow.xaml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Map\Features\IWithContextMenuOptions.cs" />
+        <Compile Include="Map\Features\IHasContextMenuOptions.cs" />
         <Compile Include="Map\Features\PointOfInterestFeature.cs" />
+        <Compile Include="Map\Features\SectionPointFeature.cs" />
         <Compile Include="Map\Features\WaypointFeature.cs" />
         <Compile Include="Map\IMap.cs" />
         <Compile Include="Map\RouteLayer.cs" />
         <Compile Include="Map\RoutePointsLayer.cs" />
+        <Compile Include="Map\SectionsLayer.cs" />
+        <Compile Include="Map\SectionPointsLayer.cs" />
         <Compile Include="PoiWindow.xaml.cs">
           <DependentUpon>PoiWindow.xaml</DependentUpon>
         </Compile>
@@ -341,13 +348,13 @@
         <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
       </PropertyGroup>
       <Error Condition="!Exists('..\packages\HarfBuzzSharp.2.6.1\build\net45\HarfBuzzSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\HarfBuzzSharp.2.6.1\build\net45\HarfBuzzSharp.targets'))" />
-      <Error Condition="!Exists('..\packages\SkiaSharp.1.68.2-preview.39\build\net45\SkiaSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.1.68.2-preview.39\build\net45\SkiaSharp.targets'))" />
       <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets'))" />
       <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets'))" />
       <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets'))" />
+      <Error Condition="!Exists('..\packages\SkiaSharp.1.68.2-preview.45\build\net45\SkiaSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.1.68.2-preview.45\build\net45\SkiaSharp.targets'))" />
     </Target>
-    <Import Project="..\packages\SkiaSharp.1.68.2-preview.39\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.68.2-preview.39\build\net45\SkiaSharp.targets')" />
     <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />
     <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
     <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.13\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" />
+    <Import Project="..\packages\SkiaSharp.1.68.2-preview.45\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.68.2-preview.45\build\net45\SkiaSharp.targets')" />
 </Project>

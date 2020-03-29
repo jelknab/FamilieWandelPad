@@ -41,14 +41,14 @@ namespace FamilieWandelPad.RouteBuilder.Map
                             return new WaypointFeature
                             {
                                 RoutePoint = wp,
-                                Geometry = SphericalMercator.FromLonLat(wp.Latitude, wp.Longitude)
+                                Geometry = SphericalMercator.FromLonLat(wp.Longitude, wp.Latitude)
                             };
                         
                         case PointOfInterest poi:
                             return new PointOfInterestFeature
                             {
                                 RoutePoint = poi,
-                                Geometry = SphericalMercator.FromLonLat(poi.Latitude, poi.Longitude)
+                                Geometry = SphericalMercator.FromLonLat(poi.Longitude, poi.Latitude)
                             };
                         
                         default:

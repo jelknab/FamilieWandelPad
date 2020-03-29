@@ -8,6 +8,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <wpf:MapControl Name="MapControl" />
+        <DockPanel>
+            <StackPanel Margin="10" DockPanel.Dock="Left">
+                <Label FontWeight="Bold" Content="Editing mode" />
+                <StackPanel>
+                    <RadioButton Name="WaypointModeOption" Content="Waypoints" GroupName="EditingMode"></RadioButton>
+                    <RadioButton Name="SectionModeOption" Content="Sections" GroupName="EditingMode"></RadioButton>
+                </StackPanel>
+                </StackPanel>
+            
+            <wpf:MapControl Name="MapControl" />
+        </DockPanel>
     </Grid>
 </Window>
