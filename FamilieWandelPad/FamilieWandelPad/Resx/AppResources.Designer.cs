@@ -19,7 +19,7 @@ namespace FamilieWandelPad.Resx {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppResources {
@@ -66,6 +66,42 @@ namespace FamilieWandelPad.Resx {
         public static string DeviceNotSupported {
             get {
                 return ResourceManager.GetString("DeviceNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started.
+        /// </summary>
+        public static string GetStarted {
+            get {
+                return ResourceManager.GetString("GetStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have fun!.
+        /// </summary>
+        public static string HaveFun {
+            get {
+                return ResourceManager.GetString("HaveFun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for downloading the Kaag hiking navigation app! The short route you are about to walk, will take you along some of the most interesting places on the island. A couple of highlights along the route will trigger an information prompt on your device, keep an eye out!.
+        /// </summary>
+        public static string WelcomeDescription {
+            get {
+                return ResourceManager.GetString("WelcomeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome Hiker!.
+        /// </summary>
+        public static string WelcomeHiker {
+            get {
+                return ResourceManager.GetString("WelcomeHiker", resourceCulture);
             }
         }
     }

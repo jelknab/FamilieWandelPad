@@ -17,7 +17,7 @@ namespace FamilieWandelPad
                 return;
             }
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new WelcomePage();
         }
 
         public static SQLiteConnectionString MbTileConnectionString { get; set; }

@@ -7,9 +7,12 @@ using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.Database.Model.waypoints;
 using FamilieWandelPad.Map;
 using FamilieWandelPad.Map.MapLayers;
+using FamilieWandelPad.Pages;
 using Mapsui.Styles;
 using Mapsui.UI.Forms;
 using Plugin.Geolocator.Abstractions;
+using Xamarin.Forms;
+using Color = Mapsui.Styles.Color;
 
 namespace FamilieWandelPad.navigation
 {
@@ -17,11 +20,12 @@ namespace FamilieWandelPad.navigation
     {
         private readonly IGeolocator _geoLocator;
         private readonly INavigationMap _mapView;
+        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(5);
         private readonly Distance _maxOffCourseDistance = Distance.FromMeters(20);
+        private readonly Distance _maxSkippingDistance = Distance.FromMeters(500);
 
 
         private readonly Route _route;
-        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(10);
         private PositionLayer _expectedPositionLayer;
         private PositionLayer _positionLayer;
 
@@ -63,28 +67,53 @@ namespace FamilieWandelPad.navigation
         {
             var position = e.Position.ToGeoPosition();
 
-            var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(
-                LastWaypoint,
-                NextWaypoint,
-                position
-            );
-            var onTrack = IsUserOnTrack(expectedPosition, position);
+            var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(LastWaypoint, NextWaypoint, position);
+            var isOnRoute = IsOnRoute(expectedPosition, position);
 
-            if (!onTrack)
+            if (!isOnRoute)
             {
-                //todo: warn user
+                var possibleSkip = GetNextPointOnRoute(position);
+                if (possibleSkip != null)
+                {
+                    do
+                    {
+                        ActivateNextWaypoint();
+                        VisitedWaypoints.Add(LastWaypoint);
+                    } while (LastWaypoint != possibleSkip);
+                }
             }
 
             if (HasArrivedAtWaypoint(position))
             {
                 ActivateNextWaypoint();
-
                 VisitedWaypoints.Add(LastWaypoint);
 
                 if (LastWaypoint is PointOfInterest poi) ShowPointOfInterestModal(poi);
             }
 
-            UpdateMap(position, expectedPosition, onTrack);
+            UpdateMap(position, expectedPosition, isOnRoute);
+        }
+
+        private RoutePoint GetNextPointOnRoute(GeoPosition position)
+        {
+            var last = LastWaypoint;
+            var skipDistance = 0d;
+            foreach (var routePoint in _route.GetEnumerable(NextWaypoint, NavigationDirection))
+            {
+                var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(last, routePoint, position);
+                skipDistance += last.Distance(routePoint);
+
+                if (VisitedWaypoints.Contains(routePoint) || skipDistance > _maxSkippingDistance.Miles) break;
+
+                if (IsOnRoute(expectedPosition, position))
+                {
+                    return routePoint;
+                }
+                
+                last = routePoint;
+            }
+
+            return null;
         }
 
         public void OnNavigationFinished()
@@ -129,16 +158,17 @@ namespace FamilieWandelPad.navigation
             _geoLocator.PositionChanged += OnLocationUpdate;
         }
 
-        private void ShowPointOfInterestModal(PointOfInterest poi)
+        protected virtual void ShowPointOfInterestModal(PointOfInterest poi)
         {
-            //todo: Display point of interest
+            var poiPage = new PointOfInterestPage(poi);
+            Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(poiPage));
         }
 
         private void UpdateMap(GeoPosition position, GeoPosition expectedPosition, bool onTrack)
         {
-            var rotation = LastWaypoint.AngleTo(NextWaypoint);
+            var rotation = LastWaypoint.DegreeBearing(NextWaypoint);
             if (onTrack)
-                _mapView.CenterView(expectedPosition, rotation);
+                _mapView.CenterView(expectedPosition, -rotation);
             else
                 _mapView.CenterView(position, 0);
 
@@ -157,7 +187,7 @@ namespace FamilieWandelPad.navigation
             NextWaypoint = RouteEnumerator.Current;
         }
 
-        private bool IsUserOnTrack(GeoPosition expected, GeoPosition actual)
+        private bool IsOnRoute(GeoPosition expected, GeoPosition actual)
         {
             return actual.Distance(expected) < _maxOffCourseDistance.Miles;
         }

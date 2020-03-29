@@ -15,7 +15,7 @@ namespace FamilieWandelPad.Tests.Navigation
         public async Task NextChangeTest()
         {
             var geoLocator = new CrossGeoLocatorMock(_route.Waypoints[3].ToGeoLocatorPosition());
-            var navigator = new Navigator(new MockMapsUiView(), _route, geoLocator);
+            var navigator = new NavigatorMockSpy(new MockMapsUiView(), _route, geoLocator);
 
             await navigator.StartNavigation();
 
@@ -33,6 +33,9 @@ namespace FamilieWandelPad.Tests.Navigation
             Assert.Equal(_route.Waypoints[^1], navigator.LastWaypoint);
             geoLocator.UpdatePosition(_route.Waypoints[^2].ToGeoLocatorPosition());
             Assert.Equal(_route.Waypoints[^2], navigator.LastWaypoint);
+            
+            // Test if want to show modal for POI
+            Assert.True(navigator.ShowPOICalled);
 
             // Test next waypoint not triggering if not close
             geoLocator.UpdatePosition(

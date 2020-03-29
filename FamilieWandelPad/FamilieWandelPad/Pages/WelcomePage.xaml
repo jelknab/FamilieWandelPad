@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:FamilieWandelPad.Resx;assembly=FamilieWandelPad"
+             x:Class="FamilieWandelPad.Pages.WelcomePage"
+             BackgroundColor="CornflowerBlue">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <StackLayout
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand">
+
+                <Label Text="{x:Static resources:AppResources.WelcomeHiker}"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="Title" 
+                       TextColor="White"/>
+                <Label Text="{x:Static resources:AppResources.WelcomeDescription}"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="White" />
+            </StackLayout>
+
+            <Label Text="{x:Static resources:AppResources.HaveFun}"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White" />
+            <Button Text="{x:Static resources:AppResources.GetStarted}"
+                    Clicked="Button_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

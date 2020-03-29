@@ -14,7 +14,7 @@ namespace FamilieWandelPad.Map.MapLayers
                 Line = new Pen(Color.Gray)
                 {
                     PenStyle = PenStyle.Solid,
-                    Width = 3.1d
+                    Width = 6d
                 }
             };
         }

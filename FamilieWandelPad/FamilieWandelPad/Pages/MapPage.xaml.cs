@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.Database.Repositories;
@@ -10,25 +11,16 @@ using Xamarin.Forms;
 
 namespace FamilieWandelPad.Pages
 {
-    public partial class MainPage
+    public partial class MapPage
     {
-        public Route Route { get; set; }
+        private readonly Task<Route> _routeTask;
         
-        public MainPage()
+        public MapPage(Task<Route> routeTask)
         {
+            _routeTask = routeTask;
             InitializeComponent();
-            Route = RouteRepository.GetRoute(App.RouteFile);
 
-            var map = MapControl.Map;
-
-            map.Layers.Add(GetKaagTileLayer());
-
-            map.Layers.Add(
-                new PathLayer(
-                    Route.GetEnumerable(Route.Waypoints.First(), Direction.Forward),
-                    Consts.MainPathLayerName
-                )
-            );
+            MapControl.Map.Layers.Add(GetKaagTileLayer());
         }
 
         public Navigator Navigator { get; set; }
@@ -36,7 +28,15 @@ namespace FamilieWandelPad.Pages
         protected override async void OnAppearing()
         {
             if (Navigator != null) return;
-            Navigator = new Navigator(MapControl, Route, CrossGeolocator.Current);
+
+            var route = await _routeTask;
+            MapControl.Map.Layers.Add(
+                new PathLayer(
+                    route.GetEnumerable(route.Waypoints.First(), Direction.Forward),
+                    Consts.MainPathLayerName
+                )
+            );
+            Navigator = new Navigator(MapControl, route, CrossGeolocator.Current);
 
             await Application.Current.MainPage.Navigation.PushModalAsync(new LookingForGpsPage());
             await Navigator.StartNavigation();

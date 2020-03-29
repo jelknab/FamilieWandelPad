@@ -16,13 +16,17 @@ namespace FamilieWandelPad.Map
                 BackColor = Color.White,
                 Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.6)
             };
+            MyLocationEnabled = false;
+            IsMyLocationButtonVisible = false;
+            IsNorthingButtonVisible = false;
 
-            Navigator = new AnimatedNavigator(Map, (IViewport) Viewport);
+            Navigator = new AnimatedNavigatorWithRotation(Map, (IViewport) Viewport);
         }
 
         public void CenterView(GeoPosition position, double rotation)
         {
-            ((AnimatedNavigator) Navigator).NavigateTo(position.ToMapSui(), Viewport.Resolution, 1000L);
+            ((AnimatedNavigatorWithRotation) Navigator)
+                .NavigateTo(position.ToMapSui(), Viewport.Resolution, rotation, 1000L);
         }
 
         public void AddLayer(ILayer layer)

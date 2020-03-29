@@ -20,7 +20,10 @@ namespace FamilieWandelPad.RouteBuilder
         {
             new CultureInfo("nl"),
             new CultureInfo("en"),
-            new CultureInfo("es")
+            new CultureInfo("es"),
+            new CultureInfo("de"),
+            new CultureInfo("pl"),
+            new CultureInfo("fr"),
         };
 
         private readonly IRouteController _route;
@@ -43,7 +46,11 @@ namespace FamilieWandelPad.RouteBuilder
                     routePoint.Translations.Add(translation);
                 
                 var tab = new TabItem();
-                var textField = new TextBox();
+                var textField = new TextBox
+                {
+                    AcceptsReturn = true,
+                    TextWrapping = TextWrapping.Wrap
+                };
                 var binding = new Binding("TextProperty")
                 {
                     Source = translation,
