@@ -51,6 +51,7 @@ namespace FamilieWandelPad.navigation
 
         public async Task StartNavigation()
         {
+            _geoLocator.DesiredAccuracy = 15;
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
 
             LastWaypoint = _route.FindClosestWaypoint(position);
@@ -164,7 +165,11 @@ namespace FamilieWandelPad.navigation
         private async Task StartListeningToLocationAsync()
         {
             if (!_geoLocator.IsListening)
-                await _geoLocator.StartListeningAsync(TimeSpan.FromSeconds(2.5), 2, true);
+                await _geoLocator.StartListeningAsync(TimeSpan.FromSeconds(2.5), 2, false, new ListenerSettings
+                {
+                    PauseLocationUpdatesAutomatically = true,
+                    DeferLocationUpdates = true
+                });
 
             _geoLocator.PositionChanged += OnLocationUpdate;
         }
