@@ -15,9 +15,9 @@
     <PackageReference Include="BruTile.MbTiles" Version="2.1.2" />
     <PackageReference Include="Mapsui" Version="2.0.0-rc.1" />
     <PackageReference Include="Mapsui.Forms" Version="2.0.0-rc.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.3" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.302-beta" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.2.6" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.6.2-beta" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.494-pre2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
@@ -54,6 +54,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FamilieWandelPad.Database\FamilieWandelPad.Database.csproj" />
-    <ProjectReference Include="..\..\FamilieWandelPad.EntityFramework\FamilieWandelPad.EntityFramework.csproj" />
   </ItemGroup>
 </Project>
