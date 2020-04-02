@@ -132,4 +132,28 @@
   <data name="WelcomeDescription" xml:space="preserve">
     <value>Thank you for downloading the Kaag hiking navigation app! The short route you are about to walk, will take you along some of the most interesting places on the island. A couple of highlights along the route will trigger an information prompt on your device, keep an eye out!</value>
   </data>
+  <data name="LookingForGPS" xml:space="preserve">
+    <value>Looking for GPS signal...</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>This app was developed by Jelle Metzlar for Stichting Promotie Kaag. We hope you enjoy the route.</value>
+  </data>
+  <data name="ForQuestions" xml:space="preserve">
+    <value>For app related questions, feel free to email at:</value>
+  </data>
+  <data name="CloseNavigation" xml:space="preserve">
+    <value>Close navigation</value>
+  </data>
+  <data name="RouteFinishedText" xml:space="preserve">
+    <value>We hope you have enjoyed the walk. See you again soon!</value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>Visit Kaag.nl</value>
+  </data>
 </root>

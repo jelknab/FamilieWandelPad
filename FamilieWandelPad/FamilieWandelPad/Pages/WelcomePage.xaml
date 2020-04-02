@@ -15,6 +15,7 @@
                        HorizontalOptions="CenterAndExpand"
                        FontSize="Title" 
                        TextColor="White"/>
+                
                 <Label Text="{x:Static resources:AppResources.WelcomeDescription}"
                        HorizontalOptions="CenterAndExpand"
                        TextColor="White" />

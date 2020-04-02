@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:FamilieWandelPad.Resx;assembly=FamilieWandelPad"
+             x:Class="FamilieWandelPad.Pages.MenuPage"
+             BackgroundColor="CornflowerBlue">
+    <ContentPage.Content>
+        <StackLayout 
+            Margin="10"
+            HorizontalOptions="CenterAndExpand">
+            <Label Text="{x:Static resources:AppResources.Menu}"
+                   FontSize="Title" 
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White"/>
+        
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill">
+                <Button 
+                    Text="{x:Static resources:AppResources.About}" 
+                    BackgroundColor="White"
+                    Clicked="AboutButtonClicked"/>
+            
+                <Button 
+                    Text="{x:Static resources:AppResources.CloseNavigation}" 
+                    BackgroundColor="Crimson" 
+                    TextColor="White"
+                    Clicked="ShutdownButtonClicked"/>
+            </StackLayout>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

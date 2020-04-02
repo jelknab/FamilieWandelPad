@@ -3,31 +3,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:FamilieWandelPad.Map;assembly=FamilieWandelPad"
+             xmlns:resources="clr-namespace:FamilieWandelPad.Resx;assembly=FamilieWandelPad"
              NavigationPage.HasNavigationBar="False"
              x:Class="FamilieWandelPad.Pages.MapPage">
 
     <ContentPage.Content>
         <Grid x:Name="ContentGrid">
-            <StackLayout>
+            <StackLayout Spacing="0">
                 <map:MapsUiView
                     x:Name="MapControl"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="Fill"
                     BackgroundColor="Gray" />
 
-                <Grid Padding="20, 0, 20, 0">
+                <Grid BackgroundColor="CornflowerBlue">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Distance travelled" Grid.Row="0" Grid.Column="0" />
-                    <Label Text="0.00km" Grid.Row="1" Grid.Column="0" />
-                    <Button Text="?" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />
+                    <Label 
+                        TextColor="White"
+                        x:Name="DistanceLabel" 
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Large"
+                        Grid.Row="0" Grid.Column="0" />
+                    <Button 
+                        BackgroundColor="White"
+                        CornerRadius="0"
+                        Text="{x:Static resources:AppResources.Menu}" 
+                        Grid.Row="0" Grid.Column="1" 
+                        Clicked="MenuButtonClicked" />
                 </Grid>
 
             </StackLayout>

@@ -13,8 +13,10 @@ namespace FamilieWandelPad.Pages
 {
     public partial class MapPage
     {
+        private NavigationStats NavigationStats { get; set; }
+
         private readonly Task<Route> _routeTask;
-        
+
         public MapPage(Task<Route> routeTask)
         {
             _routeTask = routeTask;
@@ -31,16 +33,21 @@ namespace FamilieWandelPad.Pages
 
             var route = await _routeTask;
             MapControl.Map.Layers.Add(
-                new PathLayer(
-                    route.GetEnumerable(route.Waypoints.First(), Direction.Forward),
-                    Consts.MainPathLayerName
-                )
+                new PathLayer(route.GetEnumerable(route.Waypoints.First(), Direction.Forward), Consts.MainPathLayerName)
             );
-            Navigator = new Navigator(MapControl, route, CrossGeolocator.Current);
+            NavigationStats = new NavigationStats(route);
+            Navigator = new Navigator(MapControl, route, CrossGeolocator.Current, NavigationStats);
+
+            DistanceLabel.SetBinding(Label.TextProperty, new Binding("Progress", source: NavigationStats));
 
             await Application.Current.MainPage.Navigation.PushModalAsync(new LookingForGpsPage());
             await Navigator.StartNavigation();
             await Application.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
 
         private static TileLayer GetKaagTileLayer()
@@ -48,6 +55,11 @@ namespace FamilieWandelPad.Pages
             var mbTilesTileSource = new MbTilesTileSource(App.MbTileConnectionString);
             var mbTilesLayer = new TileLayer(mbTilesTileSource);
             return mbTilesLayer;
+        }
+
+        private void MenuButtonClicked(object sender, System.EventArgs e)
+        {
+            Application.Current.MainPage.Navigation.PushModalAsync(new MenuPage());
         }
     }
 }

@@ -15,34 +15,18 @@ namespace FamilieWandelPad.Tests.Navigation
         public async Task NextChangeTest()
         {
             var geoLocator = new CrossGeoLocatorMock(_route.Waypoints[3].ToGeoLocatorPosition());
-            var navigator = new NavigatorMockSpy(new MockMapsUiView(), _route, geoLocator);
+            var navigator = new NavigatorMockSpy(new MockMapsUiView(), _route, geoLocator, new NavigationStats(_route));
 
             await navigator.StartNavigation();
-
-            // Walk till index overflow, test route progressing
-            Assert.Equal(_route.Waypoints[3], navigator.LastWaypoint);
-            Assert.Equal(_route.Waypoints[2], navigator.NextWaypoint);
-            geoLocator.UpdatePosition(_route.Waypoints[2].ToGeoLocatorPosition());
-            Assert.Equal(_route.Waypoints[2], navigator.LastWaypoint);
-            Assert.Equal(_route.Waypoints[1], navigator.NextWaypoint);
-            geoLocator.UpdatePosition(_route.Waypoints[1].ToGeoLocatorPosition());
-            Assert.Equal(_route.Waypoints[1], navigator.LastWaypoint);
-            geoLocator.UpdatePosition(_route.Waypoints[0].ToGeoLocatorPosition());
-            Assert.Equal(_route.Waypoints[0], navigator.LastWaypoint);
-            geoLocator.UpdatePosition(_route.Waypoints[^1].ToGeoLocatorPosition());
-            Assert.Equal(_route.Waypoints[^1], navigator.LastWaypoint);
-            geoLocator.UpdatePosition(_route.Waypoints[^2].ToGeoLocatorPosition());
-            Assert.Equal(_route.Waypoints[^2], navigator.LastWaypoint);
             
-            // Test if want to show modal for POI
-            Assert.True(navigator.ShowPOICalled);
+            foreach (var routePoint in _route.GetEnumerable(_route.Waypoints[3], Direction.Backward))
+            {
+                geoLocator.UpdatePosition(routePoint.ToGeoLocatorPosition());
+                Assert.Equal(routePoint, navigator.LastWaypoint);
+            }
 
-            // Test next waypoint not triggering if not close
-            geoLocator.UpdatePosition(
-                MapExtensions.InterpolatePosition(_route.Waypoints[^1], _route.Waypoints[^2], 0.45)
-                    .ToGeoLocatorPosition()
-            );
-            Assert.Equal(_route.Waypoints[^2], navigator.LastWaypoint);
+            Assert.True(navigator.ShowPOICalled);
+            Assert.True(navigator.NavigationFinishedCalled);
         }
     }
 }

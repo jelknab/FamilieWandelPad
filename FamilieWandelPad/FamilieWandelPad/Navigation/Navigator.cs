@@ -11,6 +11,7 @@ using FamilieWandelPad.Pages;
 using Mapsui.Styles;
 using Mapsui.UI.Forms;
 using Plugin.Geolocator.Abstractions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
 
@@ -19,23 +20,26 @@ namespace FamilieWandelPad.navigation
     public class Navigator : INavigator
     {
         private readonly IGeolocator _geoLocator;
+        private readonly NavigationStats _navigationStats;
         private readonly INavigationMap _mapView;
-        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(5);
+        
+        private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(8);
         private readonly Distance _maxOffCourseDistance = Distance.FromMeters(20);
         private readonly Distance _maxSkippingDistance = Distance.FromMeters(500);
 
-
+        private double _distanceWalkedMiles = 0;
+        
         private readonly Route _route;
         private PositionLayer _expectedPositionLayer;
         private PositionLayer _positionLayer;
-
         private WalkedPathLayer _walkedPathLayer;
 
-        public Navigator(INavigationMap mapView, Route route, IGeolocator geoLocator)
+        public Navigator(INavigationMap mapView, Route route, IGeolocator geoLocator, NavigationStats navigationStats)
         {
             _mapView = mapView;
             _route = route;
             _geoLocator = geoLocator;
+            _navigationStats = navigationStats;
         }
 
         private IEnumerator<RoutePoint> RouteEnumerator { get; set; }
@@ -50,6 +54,8 @@ namespace FamilieWandelPad.navigation
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
 
             LastWaypoint = _route.FindClosestWaypoint(position);
+            NextWaypoint = LastWaypoint;
+            VisitedWaypoints = new List<RoutePoint> {LastWaypoint};
 
             var section = _route.GetWaypointSection(LastWaypoint);
             NavigationDirection = _route.DetermineLongestDirectionInSection(LastWaypoint, section);
@@ -78,7 +84,6 @@ namespace FamilieWandelPad.navigation
                     do
                     {
                         ActivateNextWaypoint();
-                        VisitedWaypoints.Add(LastWaypoint);
                     } while (LastWaypoint != possibleSkip);
                 }
             }
@@ -86,12 +91,22 @@ namespace FamilieWandelPad.navigation
             if (HasArrivedAtWaypoint(position))
             {
                 ActivateNextWaypoint();
-                VisitedWaypoints.Add(LastWaypoint);
-
                 if (LastWaypoint is PointOfInterest poi) ShowPointOfInterestModal(poi);
             }
 
             UpdateMap(position, expectedPosition, isOnRoute);
+            UpdateStats(LastWaypoint.Distance(expectedPosition));
+        }
+
+        private void UpdateStats(double extraAdditionMiles)
+        {
+            _navigationStats.KmWalked = Distance.FromMiles(_distanceWalkedMiles + extraAdditionMiles).Kilometers;
+        }
+
+        public virtual void OnNavigationFinished()
+        {
+            _geoLocator.StopListeningAsync();
+            Application.Current.MainPage.Navigation.PushModalAsync(new RouteFinishedPage());
         }
 
         private RoutePoint GetNextPointOnRoute(GeoPosition position)
@@ -107,7 +122,7 @@ namespace FamilieWandelPad.navigation
 
                 if (IsOnRoute(expectedPosition, position))
                 {
-                    return routePoint;
+                    return last;
                 }
                 
                 last = routePoint;
@@ -116,14 +131,8 @@ namespace FamilieWandelPad.navigation
             return null;
         }
 
-        public void OnNavigationFinished()
-        {
-            throw new NotImplementedException();
-        }
-
         private void InitializeMap(GeoPosition position)
         {
-            VisitedWaypoints = new List<RoutePoint> {LastWaypoint};
             _walkedPathLayer = new WalkedPathLayer(VisitedWaypoints, Consts.WalkedPathLayerName);
             _mapView.AddLayer(_walkedPathLayer);
 
@@ -142,6 +151,8 @@ namespace FamilieWandelPad.navigation
                 RotateWithMap = true
             });
             _mapView.AddLayer(_expectedPositionLayer);
+            
+            UpdateMap(position, LastWaypoint, false);
         }
 
         private int GetBitMap(string path)
@@ -160,6 +171,11 @@ namespace FamilieWandelPad.navigation
 
         protected virtual void ShowPointOfInterestModal(PointOfInterest poi)
         {
+            Vibration.Vibrate();
+
+            var duration = TimeSpan.FromSeconds(1);
+            Vibration.Vibrate(duration);
+            
             var poiPage = new PointOfInterestPage(poi);
             Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(poiPage));
         }
@@ -167,6 +183,7 @@ namespace FamilieWandelPad.navigation
         private void UpdateMap(GeoPosition position, GeoPosition expectedPosition, bool onTrack)
         {
             var rotation = LastWaypoint.DegreeBearing(NextWaypoint);
+            
             if (onTrack)
                 _mapView.CenterView(expectedPosition, -rotation);
             else
@@ -182,9 +199,13 @@ namespace FamilieWandelPad.navigation
 
         private void ActivateNextWaypoint()
         {
+            _distanceWalkedMiles += LastWaypoint.Distance(NextWaypoint);
+            
             LastWaypoint = RouteEnumerator.Current;
-            RouteEnumerator.MoveNext();
+            if (!RouteEnumerator.MoveNext()) OnNavigationFinished();
             NextWaypoint = RouteEnumerator.Current;
+            
+            VisitedWaypoints.Add(LastWaypoint);
         }
 
         private bool IsOnRoute(GeoPosition expected, GeoPosition actual)

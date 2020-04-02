@@ -62,6 +62,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CloseApplication.cs" />
     <Compile Include="FileAccessHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -131,7 +132,7 @@
       <Version>2.1.2</Version>
     </PackageReference>
     <PackageReference Include="Mapsui.Forms">
-      <Version>2.0.0-beta.39</Version>
+      <Version>2.0.0-rc.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />

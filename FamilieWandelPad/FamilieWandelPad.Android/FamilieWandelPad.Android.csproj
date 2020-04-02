@@ -76,6 +76,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloseApplication.cs" />
     <Compile Include="FileAccessHelper.cs" />
     <Compile Include="MapViewRenderer.cs" />
     <Compile Include="MainActivity.cs" />

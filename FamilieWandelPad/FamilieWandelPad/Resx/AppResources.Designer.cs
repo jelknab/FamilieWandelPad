@@ -61,11 +61,47 @@ namespace FamilieWandelPad.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This app was developed by Jelle Metzlar for Stichting Promotie Kaag. We hope you enjoy the route..
+        /// </summary>
+        public static string AboutText {
+            get {
+                return ResourceManager.GetString("AboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close navigation.
+        /// </summary>
+        public static string CloseNavigation {
+            get {
+                return ResourceManager.GetString("CloseNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Device not supported.
         /// </summary>
         public static string DeviceNotSupported {
             get {
                 return ResourceManager.GetString("DeviceNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For app related questions, feel free to email at:.
+        /// </summary>
+        public static string ForQuestions {
+            get {
+                return ResourceManager.GetString("ForQuestions", resourceCulture);
             }
         }
         
@@ -84,6 +120,42 @@ namespace FamilieWandelPad.Resx {
         public static string HaveFun {
             get {
                 return ResourceManager.GetString("HaveFun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking for GPS signal....
+        /// </summary>
+        public static string LookingForGPS {
+            get {
+                return ResourceManager.GetString("LookingForGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We hope you have enjoyed the walk. See you again soon!.
+        /// </summary>
+        public static string RouteFinishedText {
+            get {
+                return ResourceManager.GetString("RouteFinishedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visit Kaag.nl.
+        /// </summary>
+        public static string VisitWebsite {
+            get {
+                return ResourceManager.GetString("VisitWebsite", resourceCulture);
             }
         }
         
