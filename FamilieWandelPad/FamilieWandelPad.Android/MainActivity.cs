@@ -10,7 +10,7 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace FamilieWandelPad.Droid
 {
-    [Activity(Label = "FamilieWandelPad", Icon = "@mipmap/icon", Theme = "@style/MainTheme",
+    [Activity(Label = "Familie Wandelpad", Icon = "@mipmap/icon", Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {

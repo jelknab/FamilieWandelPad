@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>FamilieWandelPad</string>
+	<string>Familie Wandelpad</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.metzlar.familiewandelpad</string>
 	<key>CFBundleVersion</key>
