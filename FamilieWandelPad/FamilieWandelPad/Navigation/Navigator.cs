@@ -144,6 +144,8 @@ namespace FamilieWandelPad.navigation
                 SymbolType = SymbolType.Ellipse
             });
             _mapView.AddLayer(_positionLayer);
+            
+            _mapView.AddLayer(new PointOfInterestLayer(_route.Waypoints.OfType<PointOfInterest>()));
 
             _expectedPositionLayer = new PositionLayer(LastWaypoint, new SymbolStyle
             {
@@ -152,7 +154,7 @@ namespace FamilieWandelPad.navigation
                 RotateWithMap = true
             });
             _mapView.AddLayer(_expectedPositionLayer);
-            
+
             UpdateMap(position, LastWaypoint, false);
         }
 

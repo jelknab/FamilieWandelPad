@@ -44,6 +44,7 @@
     <None Remove="Assets\pin.svg" />
     <EmbeddedResource Include="Assets\navigationArrow.svg" />
     <EmbeddedResource Include="Assets\pin.svg" />
+    <None Remove="Assets\Map_pin.svg" />
   </ItemGroup>
 
   <ItemGroup>

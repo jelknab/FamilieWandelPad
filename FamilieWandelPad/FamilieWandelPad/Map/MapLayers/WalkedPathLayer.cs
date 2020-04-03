@@ -11,10 +11,10 @@ namespace FamilieWandelPad.Map.MapLayers
             Style = new VectorStyle
             {
                 Enabled = true,
-                Line = new Pen(Color.Gray)
+                Line = new Pen(Color.FromArgb(255, 120, 120, 120))
                 {
                     PenStyle = PenStyle.Solid,
-                    Width = 6d
+                    Width = 12d
                 }
             };
         }

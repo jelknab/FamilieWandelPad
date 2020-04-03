@@ -2,12 +2,17 @@
 using System.Threading.Tasks;
 using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
+using FamilieWandelPad.Database.Model.waypoints;
 using FamilieWandelPad.Database.Repositories;
 using FamilieWandelPad.Map.MapLayers;
 using FamilieWandelPad.navigation;
 using Mapsui.Layers;
+using Mapsui.Projection;
+using Mapsui.Styles;
+using Mapsui.UI.Forms;
 using Plugin.Geolocator;
 using Xamarin.Forms;
+using Color = Mapsui.Styles.Color;
 
 namespace FamilieWandelPad.Pages
 {
@@ -32,9 +37,43 @@ namespace FamilieWandelPad.Pages
             if (Navigator != null) return;
 
             var route = await _routeTask;
-            MapControl.Map.Layers.Add(
-                new PathLayer(route.GetEnumerable(route.Waypoints.First(), Direction.Forward), Consts.MainPathLayerName)
+
+            MapControl.TouchStarted += async (sender, args) =>
+            {
+                var mapInfo = MapControl.GetMapInfo(args.ScreenPoints.First());
+                if (mapInfo.Feature is PointOfInterestFeature poif)
+                {
+                    await poif.OnClick();
+                }
+            };
+
+            var routeLayer = new PathLayer(
+                route.GetEnumerable(route.Waypoints.First(), Direction.Forward),
+                Consts.MainPathLayerName
             );
+            routeLayer.Style = null;
+            routeLayer.feature.Styles.Add(
+                new VectorStyle()
+                {
+                    Line = new Pen(Color.FromArgb(255, 48, 78, 130))
+                    {
+                        PenStyle = PenStyle.Solid,
+                        Width = 15d
+                    }
+                }
+            );
+            routeLayer.feature.Styles.Add(
+                new VectorStyle()
+                {
+                    Line = new Pen(Color.FromArgb(255, 45, 115, 200))
+                    {
+                        PenStyle = PenStyle.Solid,
+                        Width = 12d
+                    }
+                }
+            );
+
+            MapControl.Map.Layers.Add(routeLayer);
             NavigationStats = new NavigationStats(route);
             Navigator = new Navigator(MapControl, route, CrossGeolocator.Current, NavigationStats);
 

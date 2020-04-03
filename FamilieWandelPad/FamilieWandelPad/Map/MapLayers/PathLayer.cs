@@ -22,10 +22,10 @@ namespace FamilieWandelPad.Map.MapLayers
             Style = new VectorStyle
             {
                 Enabled = true,
-                Line = new Pen(Color.FromArgb(255, 255, 75, 75))
+                Line = new Pen(Color.FromArgb(255, 75, 75, 150))
                 {
                     PenStyle = PenStyle.Solid,
-                    Width = 5d
+                    Width = 3d
                 }
             };
         }
