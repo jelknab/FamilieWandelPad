@@ -182,7 +182,7 @@ namespace FamilieWandelPad.navigation
             Vibration.Vibrate(duration);
             
             var poiPage = new PointOfInterestPage(poi);
-            Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(poiPage));
+            Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(poiPage));
         }
 
         private void UpdateMap(GeoPosition position, GeoPosition expectedPosition, bool onTrack)

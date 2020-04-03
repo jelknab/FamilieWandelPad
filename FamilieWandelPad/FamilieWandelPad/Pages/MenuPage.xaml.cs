@@ -19,7 +19,7 @@ namespace FamilieWandelPad.Pages
 
         private void AboutButtonClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushModalAsync(new AboutPage());
+            Application.Current.MainPage.Navigation.PushAsync(new AboutPage());
         }
 
         private void ShutdownButtonClicked(object sender, EventArgs e)

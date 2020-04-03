@@ -25,6 +25,8 @@
                    HorizontalOptions="CenterAndExpand"
                    TextColor="White" />
             <Button Text="{x:Static resources:AppResources.GetStarted}"
+                    BackgroundColor="White"
+                    TextColor="black"
                     Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>

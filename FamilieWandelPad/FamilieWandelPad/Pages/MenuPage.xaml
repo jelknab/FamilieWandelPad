@@ -6,19 +6,17 @@
              x:Class="FamilieWandelPad.Pages.MenuPage"
              BackgroundColor="CornflowerBlue">
     <ContentPage.Content>
-        <StackLayout 
-            Margin="10"
-            HorizontalOptions="CenterAndExpand">
+        <StackLayout Margin="10">
             <Label Text="{x:Static resources:AppResources.Menu}"
                    FontSize="Title" 
                    HorizontalOptions="CenterAndExpand"
                    TextColor="White"/>
         
-            <StackLayout VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="Fill">
+            <StackLayout VerticalOptions="CenterAndExpand">
                 <Button 
                     Text="{x:Static resources:AppResources.About}" 
                     BackgroundColor="White"
+                    TextColor="black"
                     Clicked="AboutButtonClicked"/>
             
                 <Button 

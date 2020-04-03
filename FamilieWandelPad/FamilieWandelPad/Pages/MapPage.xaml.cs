@@ -59,7 +59,7 @@ namespace FamilieWandelPad.Pages
 
         private void MenuButtonClicked(object sender, System.EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushModalAsync(new MenuPage());
+            Application.Current.MainPage.Navigation.PushAsync(new MenuPage());
         }
     }
 }

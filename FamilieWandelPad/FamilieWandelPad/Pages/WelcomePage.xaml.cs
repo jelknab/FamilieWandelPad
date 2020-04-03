@@ -23,7 +23,12 @@ namespace FamilieWandelPad.Pages
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new MapPage(RouteTask));
+            var navigationPage = new NavigationPage(new MapPage(RouteTask))
+            {
+                BarBackgroundColor = Color.CornflowerBlue
+            };
+
+            Application.Current.MainPage = navigationPage;
         }
     }
 }
