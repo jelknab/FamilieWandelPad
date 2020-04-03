@@ -27,7 +27,7 @@ namespace FamilieWandelPad.Pages
 
             WebView.Source = new HtmlWebViewSource
             {
-                Html = translation.Text
+                Html = BuildHtml(translation.Text)
             };
             
             WebView.Navigating += (s, e) =>
@@ -58,6 +58,11 @@ namespace FamilieWandelPad.Pages
                 };
                 HeaderImage.GestureRecognizers.Add(tap);
             }
+        }
+
+        private static string BuildHtml(string translation)
+        {
+            return $"<html><head></head><body>{translation}</body></html>";
         }
     }
 }
