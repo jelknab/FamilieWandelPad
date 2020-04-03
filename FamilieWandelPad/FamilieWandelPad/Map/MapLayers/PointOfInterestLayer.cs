@@ -32,7 +32,7 @@ namespace FamilieWandelPad.Map.MapLayers
             {
                 BitmapId = bitmapId, 
                 SymbolScale = scale, 
-                SymbolOffset = new Offset(0.0, 0.5, true), 
+                SymbolOffset = new Offset(0.0, 0.5, true),
                 Enabled = true
             };
         }
