@@ -26,11 +26,6 @@ namespace FamilieWandelPad.Droid
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
 
-            App.MbTileConnectionString =
-                new SQLiteConnectionString(FileAccessHelper.MakeAssetAvailable("Kaag.mbtiles"));
-
-            App.RouteFile = FileAccessHelper.MakeAssetAvailable("route.sqlite");
-
             LoadApplication(new App());
         }
 

@@ -25,7 +25,8 @@ namespace FamilieWandelPad.Pages
         {
             var navigationPage = new NavigationPage(new MapPage(RouteTask))
             {
-                BarBackgroundColor = Color.CornflowerBlue
+                BarBackgroundColor = Color.CornflowerBlue,
+                BarTextColor = Color.White
             };
 
             Application.Current.MainPage = navigationPage;

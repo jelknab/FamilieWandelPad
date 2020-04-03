@@ -14,17 +14,19 @@ namespace FamilieWandelPad.Map
             Map = new Mapsui.Map
             {
                 BackColor = Color.White,
-                Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.6)
+                Home = n => n.NavigateTo(SphericalMercator.FromLonLat(52.22002, 4.55835), 0.2)
             };
             MyLocationEnabled = false;
             IsMyLocationButtonVisible = false;
             IsNorthingButtonVisible = false;
+            IsZoomButtonVisible = false;
 
             Navigator = new AnimatedNavigatorWithRotation(Map, (IViewport) Viewport);
         }
 
         public void CenterView(GeoPosition position, double rotation)
         {
+            
             ((AnimatedNavigatorWithRotation) Navigator)
                 .NavigateTo(position.ToMapSui(), Viewport.Resolution, rotation, 1000L);
         }

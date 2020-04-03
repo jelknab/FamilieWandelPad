@@ -1,29 +1,33 @@
 using System;
 using System.IO;
+using FamilieWandelPad.iOS;
 using Foundation;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(FileAccessHelper))]
 namespace FamilieWandelPad.iOS
 {
-    public class FileAccessHelper
+    public class FileAccessHelper : IFileAccessHelper
     {
-        public static string MakeAssetAvailable(string filename)
+
+        string IFileAccessHelper.MakeAssetAvailable(string fileName)
         {
             var docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
+            var libFolder = Path.Combine(docFolder, "..", "Library", "Files");
 
             if (!Directory.Exists(libFolder)) Directory.CreateDirectory(libFolder);
 
-            var dbPath = Path.Combine(libFolder, filename);
+            var outputPath = Path.Combine(libFolder, fileName);
 
-            CopyFile(dbPath);
+            CopyFile(outputPath);
 
-            return dbPath;
+            return outputPath;
         }
 
-        private static void CopyFile(string dbPath)
+        private static void CopyFile(string path)
         {
-            var existingDb = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(dbPath), Path.GetExtension(dbPath));
-            File.Copy(existingDb, dbPath, true);
+            var existingDb = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(path), Path.GetExtension(path));
+            File.Copy(existingDb, path, true);
         }
     }
 }

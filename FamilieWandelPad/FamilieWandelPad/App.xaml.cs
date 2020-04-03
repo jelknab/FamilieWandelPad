@@ -16,6 +16,10 @@ namespace FamilieWandelPad
                 MainPage = new UnsupportedPage();
                 return;
             }
+            
+            var fileHelper = DependencyService.Get<IFileAccessHelper>();
+            MbTileConnectionString = new SQLiteConnectionString(fileHelper.MakeAssetAvailable("Kaag.mbtiles"));
+            RouteFile = fileHelper.MakeAssetAvailable("route.sqlite");
 
             MainPage = new WelcomePage();
         }
