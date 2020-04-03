@@ -45,11 +45,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: jellebinkie@live.nl (L22BFNN85Q)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <CodesignProvision>iOS Team Provisioning Profile: net.metzlar.familiewandelpad</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -139,7 +140,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\FamilieWandelPad\FamilieWandelPad.csproj">
-      <Project>{CB96528F-A12C-4254-A6D5-4F2EA421F593}</Project>
+      <Project>{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}</Project>
       <Name>FamilieWandelPad</Name>
     </ProjectReference>
   </ItemGroup>

@@ -22,8 +22,8 @@ namespace FamilieWandelPad.iOS
 
         private static void CopyFile(string dbPath)
         {
-            var existingDb = NSBundle.MainBundle.PathForResource("people", "db3");
-            File.Copy(existingDb, dbPath);
+            var existingDb = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(dbPath), Path.GetExtension(dbPath));
+            File.Copy(existingDb, dbPath, true);
         }
     }
 }
