@@ -11,7 +11,7 @@
         <Grid>
             <StackLayout Spacing="0">
                 <map:MapsUiView
-                    x:Name="MapControl"
+                    x:Name="MapView"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="Fill"
                     BackgroundColor="Gray" />

@@ -18,8 +18,9 @@ namespace FamilieWandelPad.RouteBuilder
     {
         private readonly CultureInfo[] _cultures =
         {
-            new CultureInfo("nl"),
+            
             new CultureInfo("en"),
+            new CultureInfo("nl"),
             new CultureInfo("es"),
             new CultureInfo("de"),
             new CultureInfo("pl"),

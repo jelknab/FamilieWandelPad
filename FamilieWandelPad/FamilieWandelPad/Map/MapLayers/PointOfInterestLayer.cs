@@ -8,6 +8,7 @@ using Mapsui.Layers;
 using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
+using Mapsui.UI.Forms;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
 

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
@@ -12,6 +14,7 @@ using Mapsui.Styles;
 using Mapsui.UI.Forms;
 using Plugin.Geolocator;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Color = Mapsui.Styles.Color;
 
 namespace FamilieWandelPad.Pages
@@ -27,7 +30,7 @@ namespace FamilieWandelPad.Pages
             _routeTask = routeTask;
             InitializeComponent();
 
-            MapControl.Map.Layers.Add(GetKaagTileLayer());
+            MapView.Map.Layers.Add(GetKaagTileLayer());
         }
 
         public Navigator Navigator { get; set; }
@@ -38,10 +41,10 @@ namespace FamilieWandelPad.Pages
 
             var route = await _routeTask;
 
-            MapControl.TouchStarted += async (sender, args) =>
+            MapView.Info += async (sender, args) =>
             {
-                var mapInfo = MapControl.GetMapInfo(args.ScreenPoints.First());
-                if (mapInfo.Feature is PointOfInterestFeature poif)
+                args.Handled = true;
+                if (args.MapInfo.Feature is PointOfInterestFeature poif)
                 {
                     await poif.OnClick();
                 }
@@ -73,9 +76,9 @@ namespace FamilieWandelPad.Pages
                 }
             );
 
-            MapControl.Map.Layers.Add(routeLayer);
+            MapView.Map.Layers.Add(routeLayer);
             NavigationStats = new NavigationStats(route);
-            Navigator = new Navigator(MapControl, route, CrossGeolocator.Current, NavigationStats);
+            Navigator = new Navigator(MapView, route, CrossGeolocator.Current, NavigationStats);
 
             DistanceLabel.SetBinding(Label.TextProperty, new Binding("Progress", source: NavigationStats));
 
