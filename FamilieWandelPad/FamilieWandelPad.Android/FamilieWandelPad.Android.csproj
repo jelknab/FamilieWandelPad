@@ -35,7 +35,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
@@ -43,6 +43,24 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n />
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AndroidTlsProvider>
+    </AndroidTlsProvider>
+    <AndroidLinkTool>proguard</AndroidLinkTool>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -54,26 +72,18 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BruTile">
-      <Version>2.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="BruTile.MbTiles">
-      <Version>2.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Mapsui.Forms">
-      <Version>2.0.0-beta.39</Version>
-    </PackageReference>
-    <PackageReference Include="Topten.RichTextKit">
-      <Version>0.1.118</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v4">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat">
-      <Version>28.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
+    <PackageReference Include="BruTile" Version="2.1.2" />
+    <PackageReference Include="BruTile.MbTiles" Version="2.1.2" />
+    <PackageReference Include="Mapsui" Version="2.0.0-rc.1" />
+    <PackageReference Include="Mapsui.Forms" Version="2.0.0-rc.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.2.6" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.3-beta" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.494-pre2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloseApplication.cs" />
@@ -112,6 +122,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\FamilieWandelPad.Database\FamilieWandelPad.Database.csproj">
+      <Project>{98a2bb31-34f1-42b0-bf16-c85df9a66e95}</Project>
+      <Name>FamilieWandelPad.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FamilieWandelPad\FamilieWandelPad.csproj">
       <Project>{CB96528F-A12C-4254-A6D5-4F2EA421F593}</Project>
       <Name>FamilieWandelPad</Name>
@@ -129,6 +143,7 @@
     <AndroidAsset Include="..\FamilieWandelPad\Assets\route.sqlite">
       <Link>Assets\route.sqlite</Link>
     </AndroidAsset>
+    <LinkDescription Include="LinkDescription.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

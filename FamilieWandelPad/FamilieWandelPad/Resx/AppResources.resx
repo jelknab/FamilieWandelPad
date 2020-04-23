@@ -53,7 +53,6 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
-
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -151,7 +150,7 @@
     <value>Close navigation</value>
   </data>
   <data name="RouteFinishedText" xml:space="preserve">
-    <value>We hope you have enjoyed the walk. See you again soon!</value>
+    <value>Thank you for your visit to Kaag. For more information about the surroundings:</value>
   </data>
   <data name="VisitWebsite" xml:space="preserve">
     <value>Visit Kaag.nl</value>

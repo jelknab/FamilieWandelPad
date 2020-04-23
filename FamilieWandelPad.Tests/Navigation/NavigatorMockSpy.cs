@@ -1,3 +1,4 @@
+using System.Linq;
 using FamilieWandelPad.Database.Model.waypoints;
 using FamilieWandelPad.Map;
 using FamilieWandelPad.navigation;
@@ -7,9 +8,11 @@ namespace FamilieWandelPad.Tests.Navigation
 {
     public class NavigatorMockSpy : Navigator
     {
-        public bool ShowPOICalled = false;
+        public bool ShowPoiCalled = false;
         public bool NavigationFinishedCalled = false;
-        
+
+        public RoutePoint LastWaypoint => VisitedWaypoints.LastOrDefault();
+
         public NavigatorMockSpy(INavigationMap mapView, Database.Model.Route route, IGeolocator geoLocator,
             NavigationStats navigationStats) : base(mapView, route, geoLocator, navigationStats)
         {
@@ -18,7 +21,7 @@ namespace FamilieWandelPad.Tests.Navigation
 
         protected override void ShowPointOfInterestModal(PointOfInterest poi)
         {
-            ShowPOICalled = true;
+            ShowPoiCalled = true;
         }
 
         public override void OnNavigationFinished()

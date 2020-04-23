@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="DeviceNotSupported" xml:space="preserve">
+    <value>Apparaat wordt niet ondersteund</value>
+  </data>
+  <data name="GetStarted" xml:space="preserve">
+    <value>Begin</value>
+  </data>
+  <data name="HaveFun" xml:space="preserve">
+    <value>Veel plezier!</value>
+  </data>
+  <data name="WelcomeHiker" xml:space="preserve">
+    <value>Welkom wandelaar!</value>
+  </data>
+  <data name="WelcomeDescription" xml:space="preserve">
+    <value>Bedankt voor het downloaden van de Familie Wandelpad Kaag app! De route die u straks loopt, brengt u langs de mooiste en interessantste plekken van het eiland Kaag en de Buitenkaag. Sommige locaties geven meer informatie op uw telefoon, dus houdt deze in de gaten! </value>
+  </data>
+  <data name="LookingForGPS" xml:space="preserve">
+    <value>Zoeken naar GPS signaal...</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Over deze app</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Deze app is ontwikkeld door Jelle Metzlar voor Stichting Promotie Kaag. We hopen dat u van de wandeling geniet.</value>
+  </data>
+  <data name="ForQuestions" xml:space="preserve">
+    <value>Voor app gerelateerde vragen, kunt u emailen naar:</value>
+  </data>
+  <data name="CloseNavigation" xml:space="preserve">
+    <value>Stop navigatie</value>
+  </data>
+  <data name="RouteFinishedText" xml:space="preserve">
+    <value>Bedankt voor uw bezoek aan de Kaag. Voor meer informatie over de omgeving:</value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>Bezoek Kaag.nl</value>
+  </data>
+</root>

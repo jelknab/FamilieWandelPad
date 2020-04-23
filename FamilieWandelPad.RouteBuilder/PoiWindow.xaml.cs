@@ -23,7 +23,6 @@ namespace FamilieWandelPad.RouteBuilder
             new CultureInfo("nl"),
             new CultureInfo("es"),
             new CultureInfo("de"),
-            new CultureInfo("pl"),
             new CultureInfo("fr"),
         };
 

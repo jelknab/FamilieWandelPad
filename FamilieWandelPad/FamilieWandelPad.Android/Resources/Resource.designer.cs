@@ -15,7 +15,7 @@ namespace FamilieWandelPad.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -1552,6 +1552,7 @@ namespace FamilieWandelPad.Droid
 			global::SkiaSharp.Views.Forms.Resource.Style.CardView_Dark = global::FamilieWandelPad.Droid.Resource.Style.CardView_Dark;
 			global::SkiaSharp.Views.Forms.Resource.Style.CardView_Light = global::FamilieWandelPad.Droid.Resource.Style.CardView_Light;
 			global::SkiaSharp.Views.Forms.Resource.Style.collectionViewStyle = global::FamilieWandelPad.Droid.Resource.Style.collectionViewStyle;
+			global::SkiaSharp.Views.Forms.Resource.Style.NestedScrollBarStyle = global::FamilieWandelPad.Droid.Resource.Style.NestedScrollBarStyle;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_AppCompat = global::FamilieWandelPad.Droid.Resource.Style.Platform_AppCompat;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_AppCompat_Light = global::FamilieWandelPad.Droid.Resource.Style.Platform_AppCompat_Light;
 			global::SkiaSharp.Views.Forms.Resource.Style.Platform_MaterialComponents = global::FamilieWandelPad.Droid.Resource.Style.Platform_MaterialComponents;

@@ -1,4 +1,6 @@
-﻿using FamilieWandelPad.Pages;
+﻿using System.Globalization;
+using FamilieWandelPad.Pages;
+using FamilieWandelPad.Resx;
 using Plugin.Geolocator;
 using SQLite;
 using Xamarin.Forms;
@@ -9,6 +11,8 @@ namespace FamilieWandelPad
     {
         public App()
         {
+            AppResources.Culture = CultureInfo.CurrentUICulture;
+            
             InitializeComponent();
 
             if (!CrossGeolocator.IsSupported)

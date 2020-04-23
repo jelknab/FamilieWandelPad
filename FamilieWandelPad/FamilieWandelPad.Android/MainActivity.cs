@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.Widget;
+using FamilieWandelPad.Database.Repositories;
 using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using SQLite;
@@ -14,6 +16,8 @@ namespace FamilieWandelPad.Droid
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
+        private static bool _falseFlag = false;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -25,6 +29,8 @@ namespace FamilieWandelPad.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
+            
+            LinkerFix();
 
             LoadApplication(new App());
         }
@@ -34,6 +40,15 @@ namespace FamilieWandelPad.Droid
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void LinkerFix()
+        {
+            if (_falseFlag)
+            {
+                var ignore = new FitWindowsLinearLayout(null);
+                // RouteRepository.GetRouteAsync(null);
+            }
         }
     }
 }

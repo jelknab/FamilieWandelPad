@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resx\AppResources.de.Designer.cs" />
+    <Compile Remove="Resx\AppResources.es.Designer.cs" />
+    <Compile Remove="Resx\AppResources.fr.Designer.cs" />
+    <Compile Remove="Resx\AppResources.nl.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BruTile" Version="2.1.2" />
     <PackageReference Include="BruTile.MbTiles" Version="2.1.2" />
     <PackageReference Include="Mapsui" Version="2.0.0-rc.1" />
@@ -32,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resx\AppResource.nl.resx">
-      <SubType>Designer</SubType>
-      <Generator></Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resx\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

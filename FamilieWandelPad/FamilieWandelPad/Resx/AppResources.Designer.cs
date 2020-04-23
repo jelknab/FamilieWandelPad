@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Globalization;
+
 namespace FamilieWandelPad.Resx {
     using System;
     
@@ -109,7 +111,8 @@ namespace FamilieWandelPad.Resx {
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string GetStarted {
-            get {
+            get
+            {
                 return ResourceManager.GetString("GetStarted", resourceCulture);
             }
         }
@@ -142,7 +145,7 @@ namespace FamilieWandelPad.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We hope you have enjoyed the walk. See you again soon!.
+        ///   Looks up a localized string similar to Thank you for your visit to Kaag. For more information about the surroundings:.
         /// </summary>
         public static string RouteFinishedText {
             get {

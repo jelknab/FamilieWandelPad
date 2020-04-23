@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+  
+  <data name="DeviceNotSupported" xml:space="preserve">
+    <value>Gerät wird nicht unterstützt</value>
+  </data>
+    <data name="GetStarted" xml:space="preserve">
+    <value>Anfang</value>
+  </data>
+    <data name="HaveFun" xml:space="preserve">
+    <value>Viel Spaß!</value>
+  </data>
+    <data name="WelcomeHiker" xml:space="preserve">
+    <value>Willkommen Wanderer!</value>
+  </data>
+    <data name="WelcomeDescription" xml:space="preserve">
+    <value>Vielen Dank, dass Sie die Familie Fußweg Kaag App heruntergeladen haben! Der Spaziergang, den Sie später machen werden, führt Sie zu den schönsten und interessantesten Orten der Insel Kaag und des Buitenkaag. Einige Standorte bieten weitere Informationen zu Ihrem Telefon. Behalten Sie diese also im Auge!</value>
+  </data>
+    <data name="LookingForGPS" xml:space="preserve">
+    <value>GPS-Signal suchen...</value>
+  </data>
+    <data name="Menu" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+    <data name="About" xml:space="preserve">
+    <value>Über diese App</value>
+  </data>
+    <data name="AboutText" xml:space="preserve">
+    <value>Diese App wurde von Jelle Metzlar für Stichting Promotion Kaag entwickelt. Wir hoffen, Sie genießen den Spaziergang.</value>
+  </data>
+    <data name="ForQuestions" xml:space="preserve">
+    <value>Bei Fragen zur App können Sie eine E-Mail an folgende Adresse senden:</value>
+  </data>
+    <data name="CloseNavigation" xml:space="preserve">
+    <value>Stoppen Sie die Navigation</value>
+  </data>
+    <data name="RouteFinishedText" xml:space="preserve">
+    <value>Vielen Dank für Ihren Besuch. Für weitere Informationen über die Region:</value>
+  </data>
+    <data name="VisitWebsite" xml:space="preserve">
+    <value>Besuchen Sie Kaag.nl</value>
+  </data>
+</root>

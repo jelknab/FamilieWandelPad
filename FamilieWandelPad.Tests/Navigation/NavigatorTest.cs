@@ -25,7 +25,7 @@ namespace FamilieWandelPad.Tests.Navigation
                 Assert.Equal(routePoint, navigator.LastWaypoint);
             }
 
-            Assert.True(navigator.ShowPOICalled);
+            Assert.True(navigator.ShowPoiCalled);
             Assert.True(navigator.NavigationFinishedCalled);
         }
     }
