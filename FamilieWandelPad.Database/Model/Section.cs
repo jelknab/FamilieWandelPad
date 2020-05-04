@@ -34,6 +34,8 @@ namespace FamilieWandelPad.Database.Model
 
         public void PrepareForSaving()
         {
+            Id = 0;
+        
             Polygon.ForEach(point =>
             {
                 point.OrderIndex = Polygon.IndexOf(point);

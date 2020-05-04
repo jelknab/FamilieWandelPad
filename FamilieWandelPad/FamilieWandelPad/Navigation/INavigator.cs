@@ -5,10 +5,14 @@ namespace FamilieWandelPad.navigation
 {
     public interface INavigator
     {
-        Task StartNavigation();
+        Task<bool> StartNavigation();
 
         void OnNavigationFinished();
 
         void OnLocationUpdate(object sender, PositionEventArgs e);
+        
+        Task SkipToCurrentLocation();
+        
+        void StopOffRoutePopup();
     }
 }

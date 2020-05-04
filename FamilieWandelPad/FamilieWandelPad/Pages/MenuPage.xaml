@@ -20,6 +20,11 @@
                     Clicked="AboutButtonClicked"/>
             
                 <Button 
+                    Text="{x:Static resources:AppResources.RouteSkipButton}" 
+                    BackgroundColor="Crimson" 
+                    TextColor="White"
+                    Clicked="SkipButtonClicked"/>
+                <Button 
                     Text="{x:Static resources:AppResources.CloseNavigation}" 
                     BackgroundColor="Crimson" 
                     TextColor="White"

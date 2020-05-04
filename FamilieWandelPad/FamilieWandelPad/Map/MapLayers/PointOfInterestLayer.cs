@@ -58,8 +58,7 @@ namespace FamilieWandelPad.Map.MapLayers
 
         public async Task OnClick()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(
-                new PointOfInterestPage(_pointOfInterest));
+            await Application.Current.MainPage.Navigation.PushAsync(new PointOfInterestPage(_pointOfInterest));
         }
     }
 }

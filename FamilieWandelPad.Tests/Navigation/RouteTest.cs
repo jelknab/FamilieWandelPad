@@ -17,7 +17,7 @@ namespace FamilieWandelPad.Tests.Navigation
         [InlineData(52.21837, 4.55974, "Kaag")]
         public void SectionDetectionTest(double latitude, double longitude, string sectionName)
         {
-            var section = _route.GetWaypointSection(new WayPoint(latitude, longitude));
+            var section = _route.GetSectionForPosition(new WayPoint(latitude, longitude));
 
             Assert.Equal(sectionName, section.Name);
         }
@@ -27,7 +27,7 @@ namespace FamilieWandelPad.Tests.Navigation
         public void DirectionSelectionTest(int waypointIndex, Direction assertedDirection)
         {
             var waypoint = _route.Waypoints[waypointIndex];
-            var section = _route.GetWaypointSection(waypoint);
+            var section = _route.GetSectionForPosition(waypoint);
             var direction = _route.DetermineLongestDirectionInSection(waypoint, section);
 
             Assert.Equal(assertedDirection, direction);
@@ -52,7 +52,7 @@ namespace FamilieWandelPad.Tests.Navigation
                 Sections = null
             };
 
-            var section = route.GetWaypointSection(new WayPoint(0, 0));
+            var section = route.GetSectionForPosition(new WayPoint(0, 0));
 
             Assert.Equal("Default", section.Name);
         }

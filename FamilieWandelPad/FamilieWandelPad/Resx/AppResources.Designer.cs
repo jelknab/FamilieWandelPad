@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Globalization;
-
 namespace FamilieWandelPad.Resx {
     using System;
     
@@ -111,8 +109,7 @@ namespace FamilieWandelPad.Resx {
         ///   Looks up a localized string similar to Get started.
         /// </summary>
         public static string GetStarted {
-            get
-            {
+            get {
                 return ResourceManager.GetString("GetStarted", resourceCulture);
             }
         }
@@ -123,6 +120,15 @@ namespace FamilieWandelPad.Resx {
         public static string HaveFun {
             get {
                 return ResourceManager.GetString("HaveFun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        public static string IgnoreButton {
+            get {
+                return ResourceManager.GetString("IgnoreButton", resourceCulture);
             }
         }
         
@@ -145,11 +151,47 @@ namespace FamilieWandelPad.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are no long on route, if you receive this message after just starting, please press reset route, if you wish to skip part of the route press skip to my location, if you are taking a temporary stop and plan to go back, please press ignore. You can skip in the future by visiting the menu..
+        /// </summary>
+        public static string OffRouteText {
+            get {
+                return ResourceManager.GetString("OffRouteText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thank you for your visit to Kaag. For more information about the surroundings:.
         /// </summary>
         public static string RouteFinishedText {
             get {
                 return ResourceManager.GetString("RouteFinishedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset route.
+        /// </summary>
+        public static string RouteResetButton {
+            get {
+                return ResourceManager.GetString("RouteResetButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip to my location.
+        /// </summary>
+        public static string RouteSkipButton {
+            get {
+                return ResourceManager.GetString("RouteSkipButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please visit Kaag or Buitenkaag before starting navigation..
+        /// </summary>
+        public static string VisitKaag {
+            get {
+                return ResourceManager.GetString("VisitKaag", resourceCulture);
             }
         }
         

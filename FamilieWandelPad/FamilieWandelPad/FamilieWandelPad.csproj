@@ -15,6 +15,12 @@
     <Compile Remove="Resx\AppResources.es.Designer.cs" />
     <Compile Remove="Resx\AppResources.fr.Designer.cs" />
     <Compile Remove="Resx\AppResources.nl.Designer.cs" />
+    <Compile Update="Pages\NotNearRoutePage.xaml.cs">
+      <DependentUpon>NotNearRoutePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\OffRoutePage.xaml.cs">
+      <DependentUpon>OffroutePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +54,14 @@
     <EmbeddedResource Include="Assets\navigationArrow.svg" />
     <EmbeddedResource Include="Assets\pin.svg" />
     <None Remove="Assets\Map_pin.svg" />
+    <EmbeddedResource Update="Pages\NotNearRoutePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\OffRoutePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -10,30 +10,31 @@ using Xamarin.Forms.Xaml;
 namespace FamilieWandelPad.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuPage : ContentPage
+    public partial class OffRoutePage : ContentPage
     {
         private readonly INavigator _navigator;
 
-        public MenuPage(INavigator navigator)
+        public OffRoutePage(INavigator navigator)
         {
             _navigator = navigator;
             InitializeComponent();
         }
 
-        private void AboutButtonClicked(object sender, EventArgs e)
+
+        private void RouteReset_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new AboutPage());
+            Application.Current.MainPage = new WelcomePage();
         }
 
-        private void ShutdownButtonClicked(object sender, EventArgs e)
-        {
-            var closer = DependencyService.Get<ICloseApplication>();
-            closer?.closeApplication();
-        }
-
-        private void SkipButtonClicked(object sender, EventArgs e)
+        private void RouteSkip_OnClicked(object sender, EventArgs e)
         {
             _navigator.SkipToCurrentLocation();
+            Application.Current.MainPage.Navigation.PopAsync();
+        }
+
+        private void Ignore_OnClicked(object sender, EventArgs e)
+        {
+            _navigator.StopOffRoutePopup();
             Application.Current.MainPage.Navigation.PopAsync();
         }
     }

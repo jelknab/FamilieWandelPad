@@ -10,7 +10,7 @@ namespace FamilieWandelPad.navigation
 {
     public static class RouteExtensions
     {
-        private static readonly Section _defaultSection = new Section
+        public static readonly Section DefaultSection = new Section
         {
             Name = "Default"
         };
@@ -24,7 +24,7 @@ namespace FamilieWandelPad.navigation
                 .OrderByDescending(direction =>
                 {
                     var wayPoints = route.GetEnumerable(startingWaypoint, direction)
-                        .TakeWhile(waypoint => route.GetWaypointSection(waypoint) == section)
+                        .TakeWhile(waypoint => route.GetSectionForPosition(waypoint) == section)
                         .ToArray();
 
                     double distance = 0;
@@ -45,10 +45,10 @@ namespace FamilieWandelPad.navigation
                 .First();
         }
 
-        public static Section GetWaypointSection(this Route route, RoutePoint waypoint)
+        public static Section GetSectionForPosition(this Route route, GeoPosition position)
         {
             return route.Sections?
-                .FirstOrDefault(section => section.IsPointInSection(waypoint)) ?? _defaultSection;
+                .FirstOrDefault(section => section.IsPointInSection(position)) ?? DefaultSection;
         }
 
         public static RoutePoint FindClosestWaypoint(this Route route, GeoPosition geoPosition)

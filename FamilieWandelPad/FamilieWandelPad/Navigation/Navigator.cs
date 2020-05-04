@@ -22,7 +22,7 @@ namespace FamilieWandelPad.navigation
         private readonly IGeolocator _geoLocator;
         private readonly NavigationStats _navigationStats;
         private readonly INavigationMap _mapView;
-        
+
         private readonly Distance _wayPointTriggerDistance = Distance.FromMeters(8);
         private readonly Distance _maxOffCourseDistance = Distance.FromMeters(20);
         private readonly Distance _maxSkippingDistance = Distance.FromMeters(500);
@@ -33,7 +33,8 @@ namespace FamilieWandelPad.navigation
         private PositionLayer _expectedPositionLayer;
         private PositionLayer _positionLayer;
         private WalkedPathLayer _walkedPathLayer;
-
+        private bool _showOffRouteMessage = true;
+        
         public Navigator(INavigationMap mapView, Route route, IGeolocator geoLocator, NavigationStats navigationStats)
         {
             _mapView = mapView;
@@ -48,15 +49,21 @@ namespace FamilieWandelPad.navigation
         private Direction NavigationDirection { get; set; }
         public RoutePoint NextWaypoint { get; private set; }
 
-        public async Task StartNavigation()
+        public async Task<bool> StartNavigation()
         {
             _geoLocator.DesiredAccuracy = 15;
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
+            
+            if (_route.GetSectionForPosition(position) == RouteExtensions.DefaultSection)
+            {
+                Application.Current.MainPage = new NotNearRoutePage();
+                return false;
+            }
 
             NextWaypoint = _route.FindClosestWaypoint(position);
             VisitedWaypoints = new List<RoutePoint> {NextWaypoint};
 
-            var section = _route.GetWaypointSection(NextWaypoint);
+            var section = _route.GetSectionForPosition(NextWaypoint);
             NavigationDirection = _route.DetermineLongestDirectionInSection(NextWaypoint, section);
 
             RouteEnumerator = _route.GetEnumerable(NextWaypoint, NavigationDirection).GetEnumerator();
@@ -66,6 +73,7 @@ namespace FamilieWandelPad.navigation
             InitializeMap(position);
 
             await StartListeningToLocationAsync();
+            return true;
         }
 
         public void OnLocationUpdate(object sender, PositionEventArgs e)
@@ -77,13 +85,18 @@ namespace FamilieWandelPad.navigation
 
             if (!isOnRoute)
             {
-                var possibleSkip = GetNextPointOnRoute(position);
+                var possibleSkip = GetNextPointOnRoute(position, _maxSkippingDistance);
                 if (possibleSkip != null)
                 {
                     do
                     {
                         ActivateNextWaypoint();
                     } while (GetLastWayPoint() != possibleSkip);
+                }
+                else if (_showOffRouteMessage)
+                {
+                    if (!(Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault() is OffRoutePage))
+                        Application.Current.MainPage.Navigation.PushAsync(new OffRoutePage(this));
                 }
             }
 
@@ -97,6 +110,26 @@ namespace FamilieWandelPad.navigation
             UpdateStats(GetLastWayPoint().Distance(expectedPosition));
         }
 
+        public async Task SkipToCurrentLocation()
+        {
+            _geoLocator.DesiredAccuracy = 15;
+            var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
+            
+            var possibleSkip = GetNextPointOnRoute(position, Distance.FromKilometers(5));
+            if (possibleSkip != null)
+            {
+                do
+                {
+                    ActivateNextWaypoint();
+                } while (GetLastWayPoint() != possibleSkip);
+            }
+        }
+
+        public void StopOffRoutePopup()
+        {
+            _showOffRouteMessage = false;
+        }
+
         private void UpdateStats(double extraAdditionMiles)
         {
             _navigationStats.KmWalked = Distance.FromMiles(_distanceWalkedMiles + extraAdditionMiles).Kilometers;
@@ -108,7 +141,7 @@ namespace FamilieWandelPad.navigation
             Application.Current.MainPage.Navigation.PushModalAsync(new RouteFinishedPage());
         }
 
-        private RoutePoint GetNextPointOnRoute(GeoPosition position)
+        private RoutePoint GetNextPointOnRoute(GeoPosition position, Distance maxSkipDistance)
         {
             var last = GetLastWayPoint();
             var skipDistance = 0d;
@@ -117,7 +150,7 @@ namespace FamilieWandelPad.navigation
                 var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(last, routePoint, position);
                 skipDistance += last.Distance(routePoint);
 
-                if (VisitedWaypoints.Contains(routePoint) || skipDistance > _maxSkippingDistance.Miles) break;
+                if (VisitedWaypoints.Contains(routePoint) || skipDistance > maxSkipDistance.Miles) break;
 
                 if (IsOnRoute(expectedPosition, position))
                 {
@@ -181,8 +214,7 @@ namespace FamilieWandelPad.navigation
             var duration = TimeSpan.FromSeconds(1);
             Vibration.Vibrate(duration);
             
-            var poiPage = new PointOfInterestPage(poi);
-            Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(poiPage));
+            Application.Current.MainPage.Navigation.PushAsync(new PointOfInterestPage(poi));
         }
 
         private void UpdateMap(GeoPosition position, GeoPosition expectedPosition, bool onTrack)

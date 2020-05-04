@@ -13,6 +13,7 @@ using Mapsui.Projection;
 using Mapsui.Styles;
 using Mapsui.UI.Forms;
 using Plugin.Geolocator;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Color = Mapsui.Styles.Color;
@@ -29,6 +30,8 @@ namespace FamilieWandelPad.Pages
         {
             _routeTask = routeTask;
             InitializeComponent();
+
+            DeviceDisplay.KeepScreenOn = true;
 
             MapView.Map.Layers.Add(GetKaagTileLayer());
         }
@@ -83,8 +86,10 @@ namespace FamilieWandelPad.Pages
             DistanceLabel.SetBinding(Label.TextProperty, new Binding("Progress", source: NavigationStats));
 
             await Application.Current.MainPage.Navigation.PushModalAsync(new LookingForGpsPage());
-            await Navigator.StartNavigation();
-            await Application.Current.MainPage.Navigation.PopModalAsync();
+            if (await Navigator.StartNavigation())
+            {
+                await Application.Current.MainPage.Navigation.PopModalAsync();
+            }
         }
 
         protected override bool OnBackButtonPressed()
@@ -101,7 +106,7 @@ namespace FamilieWandelPad.Pages
 
         private void MenuButtonClicked(object sender, System.EventArgs e)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new MenuPage());
+            Application.Current.MainPage.Navigation.PushAsync(new MenuPage(Navigator));
         }
     }
 }

@@ -54,7 +54,7 @@ namespace FamilieWandelPad.Pages
                 tap.Tapped += (sender, args) =>
                 {
                     var fullScreenImage = new FullScreenImageModal(pointOfInterest.Image);
-                    Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(fullScreenImage));
+                    Application.Current.MainPage.Navigation.PushAsync(fullScreenImage);
                 };
                 HeaderImage.GestureRecognizers.Add(tap);
             }
