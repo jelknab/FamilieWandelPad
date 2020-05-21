@@ -166,5 +166,8 @@
     <Content Include="..\FamilieWandelPad\Assets\navigationArrow.svg">
       <Link>Resources\navigationArrow.svg</Link>
     </Content>
+    <Content Include="..\FamilieWandelPad\Assets\route.sqlite">
+      <Link>Resources\route.sqlite</Link>
+    </Content>
   </ItemGroup>
 </Project>
