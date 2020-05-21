@@ -59,7 +59,7 @@
     <value>U kan deze route alleen beginnen op Kaag of Buitenkaag.</value>
   </data>
   <data name="OffRouteText" xml:space="preserve">
-    <value>U bevind zich niet meer op de route, wanneer u net bent begonnen druk dan op reset route, als u een stuk van de route wilt overslaan druk dan op route overslaan, als u een tijdelijke stop neemt en  later terug wilt keren naar de route druk dan op negeren. U kan altijd vanaf het menu de route overslaan knop bereiken. </value>
+    <value>U bevind zich niet meer op de route, wanneer u net bent begonnen druk dan op reset route, als u een stuk van de route wilt overslaan druk dan op route overslaan, als u opzettelijk van de route afwijkt druk dan op negeren. U kunt altijd vanaf het menu de route overslaan knop bereiken. </value>
   </data>
   <data name="RouteResetButton" xml:space="preserve">
     <value>Reset route</value>

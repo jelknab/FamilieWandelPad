@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="DeviceNotSupported" xml:space="preserve">
+    <value>Il dispositivo non è supportato</value>
+  </data>
+  <data name="GetStarted" xml:space="preserve">
+    <value>inizio</value>
+  </data>
+  <data name="HaveFun" xml:space="preserve">
+    <value>Buon divertimento!</value>
+  </data>
+  <data name="WelcomeHiker" xml:space="preserve">
+    <value>Benvenuto escursionista!</value>
+  </data>
+  <data name="WelcomeDescription" xml:space="preserve">
+    <value>Grazie per aver scaricato l’app Family Hiking Trail Kaag! Il percorso che percorrerai in seguito ti porterà nei luoghi più belli e interessanti dell’isola di Kaag e Buitenkaag. Alcune posizioni forniscono ulteriori informazioni sul telefono, quindi tienile d’occhio!</value>
+  </data>
+  <data name="LookingForGPS" xml:space="preserve">
+    <value>Cerca il segnale GPS...</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>menu</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>A proposito di questa app</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Questa app è stata sviluppata da Jelle Metzlar per l'Associazione Promotion Kaag. Speriamo che ti piaccia la passeggiata.</value>
+  </data>
+  <data name="ForQuestions" xml:space="preserve">
+    <value>Per domande relative all’app, puoi inviare un’e-mail a:</value>
+  </data>
+  <data name="CloseNavigation" xml:space="preserve">
+    <value>Ferma la navigazione</value>
+  </data>
+  <data name="RouteFinishedText" xml:space="preserve">
+    <value>Grazie per aver visitato Kaag. Per maggiori informazioni sulla zona:</value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>Visita Kaag.nl</value>
+  </data>
+</root>

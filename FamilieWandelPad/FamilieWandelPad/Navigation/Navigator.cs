@@ -115,19 +115,30 @@ namespace FamilieWandelPad.navigation
             _geoLocator.DesiredAccuracy = 15;
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
             
-            var possibleSkip = GetNextPointOnRoute(position, Distance.FromKilometers(5));
-            if (possibleSkip != null)
+            var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(GetLastWayPoint(), NextWaypoint, position);
+
+            if (!IsOnRoute(expectedPosition, position))
             {
-                do
+                var possibleSkip = GetNextPointOnRoute(position, Distance.FromKilometers(5));
+                if (possibleSkip != null)
                 {
-                    ActivateNextWaypoint();
-                } while (GetLastWayPoint() != possibleSkip);
+                    do
+                    {
+                        ActivateNextWaypoint();
+                    } while (GetLastWayPoint() != possibleSkip);
+                }
             }
         }
 
         public void StopOffRoutePopup()
         {
             _showOffRouteMessage = false;
+        }
+
+        public void Stop()
+        {
+            _geoLocator.StopListeningAsync();
+            _geoLocator.PositionChanged -= OnLocationUpdate;
         }
 
         private void UpdateStats(double extraAdditionMiles)

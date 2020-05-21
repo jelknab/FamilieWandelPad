@@ -151,7 +151,7 @@ namespace FamilieWandelPad.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are no long on route, if you receive this message after just starting, please press reset route, if you wish to skip part of the route press skip to my location, if you are taking a temporary stop and plan to go back, please press ignore. You can skip in the future by visiting the menu..
+        ///   Looks up a localized string similar to You are no longer on route, press &quot;reset route&quot; if you receive this message after just starting, press &quot;skip to my location&quot; if you wish to skip part of the route, press &quot;ignore&quot; if you are intentionally going off route. You can skip in the future by visiting the menu..
         /// </summary>
         public static string OffRouteText {
             get {

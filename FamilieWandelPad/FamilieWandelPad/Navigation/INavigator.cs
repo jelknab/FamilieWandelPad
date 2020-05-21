@@ -14,5 +14,7 @@ namespace FamilieWandelPad.navigation
         Task SkipToCurrentLocation();
         
         void StopOffRoutePopup();
+        
+        void Stop();
     }
 }

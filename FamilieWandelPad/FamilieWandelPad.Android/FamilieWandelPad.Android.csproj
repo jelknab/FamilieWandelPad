@@ -140,9 +140,6 @@
     <Content Include="..\FamilieWandelPad\Assets\navigationArrow.svg">
       <Link>Assets\navigationArrow.svg</Link>
     </Content>
-    <AndroidAsset Include="..\FamilieWandelPad\Assets\route.sqlite">
-      <Link>Assets\route.sqlite</Link>
-    </AndroidAsset>
     <LinkDescription Include="LinkDescription.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

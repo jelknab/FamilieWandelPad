@@ -23,6 +23,7 @@ namespace FamilieWandelPad.Pages
 
         private void RouteReset_OnClicked(object sender, EventArgs e)
         {
+            _navigator.Stop();
             Application.Current.MainPage = new WelcomePage();
         }
 

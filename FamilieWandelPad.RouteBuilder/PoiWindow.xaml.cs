@@ -24,6 +24,7 @@ namespace FamilieWandelPad.RouteBuilder
             new CultureInfo("es"),
             new CultureInfo("de"),
             new CultureInfo("fr"),
+            new CultureInfo("it"),
         };
 
         private readonly IRouteController _route;

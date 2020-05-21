@@ -159,7 +159,7 @@
     <value>Please visit Kaag or Buitenkaag before starting navigation.</value>
   </data>
   <data name="OffRouteText" xml:space="preserve">
-    <value>You are no long on route, if you receive this message after just starting, please press reset route, if you wish to skip part of the route press skip to my location, if you are taking a temporary stop and plan to go back, please press ignore. You can skip in the future by visiting the menu.</value>
+    <value>You are no longer on route, press "reset route" if you receive this message after just starting, press "skip to my location" if you wish to skip part of the route, press "ignore" if you are intentionally going off route. You can skip in the future by visiting the menu.</value>
   </data>
   <data name="RouteResetButton" xml:space="preserve">
     <value>Reset route</value>
