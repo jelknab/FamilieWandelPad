@@ -51,7 +51,6 @@ namespace FamilieWandelPad.navigation
 
         public async Task<bool> StartNavigation()
         {
-            _geoLocator.DesiredAccuracy = 15;
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
             
             if (_route.GetSectionForPosition(position) == RouteExtensions.DefaultSection)
@@ -112,7 +111,6 @@ namespace FamilieWandelPad.navigation
 
         public async Task SkipToCurrentLocation()
         {
-            _geoLocator.DesiredAccuracy = 15;
             var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
             
             var expectedPosition = MapExtensions.ClosestPositionBetweenPoints(GetLastWayPoint(), NextWaypoint, position);
