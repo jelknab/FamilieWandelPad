@@ -42,10 +42,5 @@ namespace FamilieWandelPad
         protected override void OnResume()
         {
         }
-
-        private bool IsLocationAvailable()
-        {
-            return CrossGeolocator.Current.IsGeolocationAvailable;
-        }
     }
 }

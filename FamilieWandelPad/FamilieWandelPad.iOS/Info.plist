@@ -34,10 +34,10 @@
 	<string>FamilieWandelPad</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Familie Wandelpad Kaag needs access to your location.</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.11</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Familie Wandelpad Kaag needs access to your location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Familie Wandelpad Kaag needs access to your location.</string>
 </dict>

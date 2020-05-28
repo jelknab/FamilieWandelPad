@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.Database.Repositories;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +20,24 @@ namespace FamilieWandelPad.Pages
         {
             InitializeComponent();
             RouteTask = RouteRepository.GetRouteAsync(App.RouteFile);
+        }
+
+        protected override async void OnAppearing()
+        {
+            if (await IsLocationGranted()) return;
+            
+            await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+
+            if (await IsLocationGranted()) return;
+            
+            var closer = DependencyService.Get<ICloseApplication>();
+            closer?.closeApplication();
+        }
+
+        private static async Task<bool> IsLocationGranted()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            return status == PermissionStatus.Granted || status == PermissionStatus.Restricted;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

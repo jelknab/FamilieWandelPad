@@ -24,6 +24,7 @@ namespace FamilieWandelPad.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            CrossCurrentActivity.Current.Activity = this;
 
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
@@ -39,6 +40,7 @@ namespace FamilieWandelPad.Droid
             Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
