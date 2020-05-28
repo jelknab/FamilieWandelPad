@@ -170,4 +170,10 @@
   <data name="IgnoreButton" xml:space="preserve">
     <value>Ignore</value>
   </data>
+  <data name="LocationPermission" xml:space="preserve">
+    <value>Location permission</value>
+  </data>
+  <data name="EnableLocationFromSettings" xml:space="preserve">
+    <value>Go to settings to enable location permissions?</value>
+  </data>
 </root>

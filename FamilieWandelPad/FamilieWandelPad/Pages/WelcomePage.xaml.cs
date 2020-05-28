@@ -24,20 +24,8 @@ namespace FamilieWandelPad.Pages
 
         protected override async void OnAppearing()
         {
-            if (await IsLocationGranted()) return;
-            
-            await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-
-            if (await IsLocationGranted()) return;
-            
-            var closer = DependencyService.Get<ICloseApplication>();
-            closer?.closeApplication();
-        }
-
-        private static async Task<bool> IsLocationGranted()
-        {
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-            return status == PermissionStatus.Granted || status == PermissionStatus.Restricted;
+            var locationPermission = DependencyService.Get<ILocationPermission>();
+            await locationPermission.CheckAndAsk();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
