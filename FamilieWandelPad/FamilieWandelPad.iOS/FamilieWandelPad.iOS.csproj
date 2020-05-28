@@ -171,4 +171,7 @@
       <Link>Resources\route.sqlite</Link>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <LinkDescription Include="LinkDescription.xml" />
+  </ItemGroup>
 </Project>
