@@ -26,7 +26,6 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -34,12 +33,8 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,17 +59,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Jelle Metzlar (2R2A7S5WSZ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>iOS Team Provisioning Profile: net.metzlar.FamilieWandelpadKaag</CodesignProvision>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CloseApplication.cs" />
     <Compile Include="FileAccessHelper.cs" />
+    <Compile Include="LocationPermission.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -159,8 +150,6 @@
     <PackageReference Include="Mapsui.Forms">
       <Version>2.0.0-rc.1</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.2.6" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
   </ItemGroup>
@@ -170,23 +159,16 @@
       <Project>{B48DA2D7-6CA8-4B51-93DE-B59FC07366C4}</Project>
       <Name>FamilieWandelPad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\FamilieWandelPad.Database\FamilieWandelPad.Database.csproj">
-      <Project>{98A2BB31-34F1-42B0-BF16-C85DF9A66E95}</Project>
-      <Name>FamilieWandelPad.Database</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="..\FamilieWandelPad\Assets\route.sqlite">
-      <Link>Resources\route.sqlite</Link>
-    </BundleResource>
-    <BundleResource Include="..\FamilieWandelPad\Assets\navigationArrow.svg">
-      <Link>Resources\navigationArrow.svg</Link>
-    </BundleResource>
-    <BundleResource Include="..\FamilieWandelPad\Assets\Kaag.mbtiles">
+    <Content Include="..\FamilieWandelPad\Assets\Kaag.mbtiles">
       <Link>Resources\Kaag.mbtiles</Link>
-    </BundleResource>
-  </ItemGroup>
-  <ItemGroup>
-    <LinkDescription Include="LinkDescription.xml" />
+    </Content>
+    <Content Include="..\FamilieWandelPad\Assets\navigationArrow.svg">
+      <Link>Resources\navigationArrow.svg</Link>
+    </Content>
+    <Content Include="..\FamilieWandelPad\Assets\route.sqlite">
+      <Link>Resources\route.sqlite</Link>
+    </Content>
   </ItemGroup>
 </Project>

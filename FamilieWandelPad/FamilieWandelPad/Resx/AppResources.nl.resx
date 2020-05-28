@@ -70,4 +70,10 @@
   <data name="IgnoreButton" xml:space="preserve">
     <value>Negeren</value>
   </data>
+  <data name="LocationPermission" xml:space="preserve">
+    <value>Locatie toegang</value>
+  </data>
+  <data name="EnableLocationFromSettings" xml:space="preserve">
+    <value>Geef toegang tot locatie vanuit instellingen?</value>
+  </data>
 </root>
