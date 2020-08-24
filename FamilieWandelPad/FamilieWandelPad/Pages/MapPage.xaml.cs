@@ -1,21 +1,14 @@
-﻿using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
-using FamilieWandelPad.Database.Model.waypoints;
-using FamilieWandelPad.Database.Repositories;
 using FamilieWandelPad.Map.MapLayers;
 using FamilieWandelPad.navigation;
 using Mapsui.Layers;
-using Mapsui.Projection;
 using Mapsui.Styles;
-using Mapsui.UI.Forms;
 using Plugin.Geolocator;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Color = Mapsui.Styles.Color;
 
 namespace FamilieWandelPad.Pages

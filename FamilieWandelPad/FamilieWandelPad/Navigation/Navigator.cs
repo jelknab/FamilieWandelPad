@@ -13,6 +13,7 @@ using Mapsui.UI.Forms;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Brush = Mapsui.Styles.Brush;
 using Color = Mapsui.Styles.Color;
 
 namespace FamilieWandelPad.navigation
