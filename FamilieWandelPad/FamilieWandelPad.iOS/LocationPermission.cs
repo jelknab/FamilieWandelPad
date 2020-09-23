@@ -11,22 +11,24 @@ namespace FamilieWandelPad.iOS
 {
     public class LocationPermission : ILocationPermission
     {
-        public async Task CheckAndAsk()
+        public async Task<bool> CheckAndAsk()
         {
             var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
 
             switch (status)
             {
                 case PermissionStatus.Granted:
+                    return true;
                 case PermissionStatus.Restricted:
-                    return;
+                    return false;
                 case PermissionStatus.Unknown:
                     await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-                    await CheckAndAsk();
-                    break;
+                    return await CheckAndAsk();
                 case PermissionStatus.Denied:
                     ShowToSettingsPopup();
-                    break;
+                    return false;
+                default:
+                    return false;
             }
         }
 
@@ -38,6 +40,8 @@ namespace FamilieWandelPad.iOS
             okAlertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, action =>
             {
                 UIApplication.SharedApplication.OpenUrl(new NSUrl(UIApplication.OpenSettingsUrlString));
+                var closer = DependencyService.Get<ICloseApplication>();
+                closer?.closeApplication();
             }));
 
             // Present Alert

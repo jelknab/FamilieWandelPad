@@ -28,7 +28,7 @@ namespace FamilieWandelPad.Pages
             await locationPermission.CheckAndAsk();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
             var navigationPage = new NavigationPage(new MapPage(RouteTask))
             {

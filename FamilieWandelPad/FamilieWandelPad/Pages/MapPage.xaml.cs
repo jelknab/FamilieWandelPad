@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BruTile.MbTiles;
 using FamilieWandelPad.Database.Model;
@@ -6,6 +8,7 @@ using FamilieWandelPad.Map.MapLayers;
 using FamilieWandelPad.navigation;
 using Mapsui.Layers;
 using Mapsui.Styles;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Geolocator;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -35,54 +38,95 @@ namespace FamilieWandelPad.Pages
         {
             if (Navigator != null) return;
 
-            var route = await _routeTask;
-
-            MapView.Info += async (sender, args) =>
-            {
-                args.Handled = true;
-                if (args.MapInfo.Feature is PointOfInterestFeature poif)
-                {
-                    await poif.OnClick();
-                }
-            };
-
-            var routeLayer = new PathLayer(
-                route.GetEnumerable(route.Waypoints.First(), Direction.Forward),
-                Consts.MainPathLayerName
-            );
-            routeLayer.Style = null;
-            routeLayer.feature.Styles.Add(
-                new VectorStyle()
-                {
-                    Line = new Pen(Color.FromArgb(255, 48, 78, 130))
-                    {
-                        PenStyle = PenStyle.Solid,
-                        Width = 15d
-                    }
-                }
-            );
-            routeLayer.feature.Styles.Add(
-                new VectorStyle()
-                {
-                    Line = new Pen(Color.FromArgb(255, 45, 115, 200))
-                    {
-                        PenStyle = PenStyle.Solid,
-                        Width = 12d
-                    }
-                }
-            );
-
-            MapView.Map.Layers.Add(routeLayer);
-            NavigationStats = new NavigationStats(route);
-            Navigator = new Navigator(MapView, route, CrossGeolocator.Current, NavigationStats);
-
-            DistanceLabel.SetBinding(Label.TextProperty, new Binding("Progress", source: NavigationStats));
-
             await Application.Current.MainPage.Navigation.PushModalAsync(new LookingForGpsPage());
-            if (await Navigator.StartNavigation())
+
+            Route route = null;
+
+            try
             {
-                await Application.Current.MainPage.Navigation.PopModalAsync();
+                route = await _routeTask;
+            } catch (Exception e)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "Category", "Route parsing" }
+                };
+                Crashes.TrackError(e, properties);
+
+                return;
             }
+
+            try
+            {
+                MapView.Info += async (sender, args) =>
+                {
+                    args.Handled = true;
+                    if (args.MapInfo.Feature is PointOfInterestFeature poif)
+                    {
+                        await poif.OnClick();
+                    }
+                };
+
+                var routeLayer = new PathLayer(
+                    route.GetEnumerable(route.Waypoints.First(), Direction.Forward),
+                    Consts.MainPathLayerName
+                );
+                routeLayer.Style = null;
+                routeLayer.feature.Styles.Add(
+                    new VectorStyle()
+                    {
+                        Line = new Pen(Color.FromArgb(255, 48, 78, 130))
+                        {
+                            PenStyle = PenStyle.Solid,
+                            Width = 15d
+                        }
+                    }
+                );
+                routeLayer.feature.Styles.Add(
+                    new VectorStyle()
+                    {
+                        Line = new Pen(Color.FromArgb(255, 45, 115, 200))
+                        {
+                            PenStyle = PenStyle.Solid,
+                            Width = 12d
+                        }
+                    }
+                );
+
+                MapView.Map.Layers.Add(routeLayer);
+            } catch (Exception e)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "Category", "Map styling" }
+                };
+                Crashes.TrackError(e, properties);
+
+                return;
+            }
+
+            try
+            {
+                NavigationStats = new NavigationStats(route);
+                Navigator = new Navigator(MapView, route, CrossGeolocator.Current, NavigationStats);
+
+                DistanceLabel.SetBinding(Label.TextProperty, new Binding("Progress", source: NavigationStats));
+
+                if (await Navigator.StartNavigation())
+                {
+                    await Application.Current.MainPage.Navigation.PopModalAsync();
+                }
+            } catch (Exception e)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "Category", "Navigation" }
+                };
+                Crashes.TrackError(e, properties);
+
+                return;
+            }
+
         }
 
         protected override bool OnBackButtonPressed()

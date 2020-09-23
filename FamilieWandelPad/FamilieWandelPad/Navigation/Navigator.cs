@@ -13,6 +13,7 @@ using Mapsui.UI.Forms;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Microsoft.AppCenter.Crashes;
 using Brush = Mapsui.Styles.Brush;
 using Color = Mapsui.Styles.Color;
 
@@ -52,8 +53,25 @@ namespace FamilieWandelPad.navigation
 
         public async Task<bool> StartNavigation()
         {
-            var position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
-            
+            var locationPermission = DependencyService.Get<ILocationPermission>();
+            var permissionGranted = await locationPermission.CheckAndAsk();
+
+            GeoPosition position = null;
+
+            try
+            {
+                position = (await _geoLocator.GetPositionAsync()).ToGeoPosition();
+            } catch (GeolocationException e)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    { "Permission status", permissionGranted.ToString() }
+                };
+                Crashes.TrackError(e, properties);
+
+                return false;
+            }
+
             if (_route.GetSectionForPosition(position) == RouteExtensions.DefaultSection)
             {
                 Application.Current.MainPage = new NotNearRoutePage();
@@ -73,6 +91,7 @@ namespace FamilieWandelPad.navigation
             InitializeMap(position);
 
             await StartListeningToLocationAsync();
+
             return true;
         }
 

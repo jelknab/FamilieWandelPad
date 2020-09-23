@@ -1,6 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using FamilieWandelPad.Pages;
 using FamilieWandelPad.Resx;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Geolocator;
 using SQLite;
 using Xamarin.Forms;
@@ -33,6 +37,9 @@ namespace FamilieWandelPad
 
         protected override void OnStart()
         {
+            
+            AppCenter.Start("ios=de6d78ad-6088-4dad-ba00-a6f5188e028e;",
+                   typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()

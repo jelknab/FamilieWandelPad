@@ -4,6 +4,6 @@ namespace FamilieWandelPad
 {
     public interface ILocationPermission
     {
-        Task CheckAndAsk();
+        Task<bool> CheckAndAsk();
     }
 }
