@@ -1,13 +1,18 @@
 ﻿using System.IO;
 using System.Reflection;
 using BruTile.MbTiles;
+using BruTile.Predefined;
 using FamilieWandelPad.Database.Model;
 using FamilieWandelPad.RouteBuilder.Controllers;
 using FamilieWandelPad.RouteBuilder.Editing;
 using FamilieWandelPad.RouteBuilder.Map;
+using Mapsui;
+using Mapsui.Geometries;
 using Mapsui.Layers;
 using Mapsui.Projection;
+using Mapsui.Styles;
 using SQLite;
+using IMap = FamilieWandelPad.RouteBuilder.Map.IMap;
 
 namespace FamilieWandelPad.RouteBuilder
 {
@@ -34,7 +39,8 @@ namespace FamilieWandelPad.RouteBuilder
 
             UpdateRoute(RouteController.Route);
 
-            MapControl.Map.Layers.Add(GetKaagTileLayer());
+            // MapControl.Map.Layers.Add(GetKaagTileLayer());
+            MapControl.Map.Layers.Add(new TileLayer(KnownTileSources.Create(KnownTileSource.OpenStreetMap)));
             MapControl.Map.Layers.Add(RouteLayer);
             MapControl.Map.Layers.Add(RoutePointsLayer);
             MapControl.Map.Layers.Add(SectionsLayer);
@@ -48,8 +54,18 @@ namespace FamilieWandelPad.RouteBuilder
             
             WaypointModeOption.Checked += (sender, args) => SetEditor(wayPointEditor);
             SectionModeOption.Checked += (sender, args) => SetEditor(sectionEditor);
+            ScreenshotButton.Click += (sender, args) => Screenshot();
 
             WaypointModeOption.IsChecked = true;
+        }
+
+        private void Screenshot()
+        {
+            // var viewport = new Viewport {Center = SphericalMercator.FromLonLat(4.55835, 52.22002), Width = 200, Height = 200, Resolution = 6};
+            using (var fileStream = new FileStream("test.png", FileMode.Create, FileAccess.Write))
+            {
+                MapControl.Renderer.RenderToBitmapStream(MapControl.Viewport, MapControl.Map.Layers, Color.White).WriteTo(fileStream);
+            }
         }
 
         private void SetEditor(IEditor editor)

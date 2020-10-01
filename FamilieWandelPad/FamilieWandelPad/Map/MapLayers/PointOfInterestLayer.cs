@@ -28,10 +28,9 @@ namespace FamilieWandelPad.Map.MapLayers
         
         private static SymbolStyle CreateSvgStyle(string embeddedResourcePath, double scale)
         {
-            var bitmapId = GetBitmapIdForEmbeddedResource(embeddedResourcePath);
             return new SymbolStyle
             {
-                BitmapId = bitmapId, 
+                BitmapId = GetBitmapIdForEmbeddedResource(embeddedResourcePath), 
                 SymbolScale = scale, 
                 SymbolOffset = new Offset(0.0, 0.5, true),
                 Enabled = true

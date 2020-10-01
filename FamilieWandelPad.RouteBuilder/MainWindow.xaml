@@ -15,7 +15,9 @@
                     <RadioButton Name="WaypointModeOption" Content="Waypoints" GroupName="EditingMode"></RadioButton>
                     <RadioButton Name="SectionModeOption" Content="Sections" GroupName="EditingMode"></RadioButton>
                 </StackPanel>
-                </StackPanel>
+                
+                <Button Name="ScreenshotButton" Content="Screenshot"></Button>
+            </StackPanel>
             
             <wpf:MapControl Name="MapControl" />
         </DockPanel>

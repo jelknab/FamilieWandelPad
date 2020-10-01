@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FamilieWandelPad.Database\FamilieWandelPad.Database.csproj" />
+      <ProjectReference Include="..\FamilieWandelPad\FamilieWandelPad\FamilieWandelPad.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BruTile" Version="3.0.0" />
+      <PackageReference Include="BruTile.MbTiles" Version="3.0.0" />
+      <PackageReference Include="Mapsui" Version="3.0.0-alpha.1" />  
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.8" />
+        <PackageReference Include="SkiaSharp" Version="2.80.2" />
+        <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+        <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+        <PackageReference Include="Svg.Skia" Version="0.4.2-preview7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="..\FamilieWandelPad\FamilieWandelPad\Assets\Pin.svg">
+        <Link>Assets\Pin.svg</Link>
+      </EmbeddedResource>
+      <None Remove="Arrow_Up.png" />
+      <EmbeddedResource Include="Arrow_Up.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\FamilieWandelPad\FamilieWandelPad\Assets\Arrow_Up.svg">
+        <Link>Assets\Arrow_Up.svg</Link>
+      </None>
+    </ItemGroup>
+
+</Project>

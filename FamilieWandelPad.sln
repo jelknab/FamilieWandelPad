@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilieWandelPad.Database",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilieWandelPad.RouteBuilder", "FamilieWandelPad.RouteBuilder\FamilieWandelPad.RouteBuilder.csproj", "{36F86058-F69C-4A82-94AF-D387D61BB820}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilieWandelPad.RouteImager", "FamilieWandelPad.RouteImager\FamilieWandelPad.RouteImager.csproj", "{F07AA597-0F51-473A-9787-DBD3CE50D003}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,18 @@ Global
 		{36F86058-F69C-4A82-94AF-D387D61BB820}.Release|iPhone.Build.0 = Release|Any CPU
 		{36F86058-F69C-4A82-94AF-D387D61BB820}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{36F86058-F69C-4A82-94AF-D387D61BB820}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|iPhone.Build.0 = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F07AA597-0F51-473A-9787-DBD3CE50D003}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

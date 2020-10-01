@@ -5,12 +5,9 @@
   &lt;Assembly Path="C:\Users\Jelle Metzlar\.nuget\packages\mapsui\2.0.0-beta.39\lib\netstandard2.0\Mapsui.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\Jelle Metzlar\RiderProjects\FamilieWandelPad\packages\Mapsui.2.0.0-beta.39\lib\net461\Mapsui.UI.Wpf.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7e37ff7a_002D6b67_002D4c27_002Dacde_002D1925f47e6a1d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;FamilieWandelPad.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="G:\Seafile\cloud\Projecten\familiewandelpad\applicatie\FamilieWandelPad\FamilieWandelPad.Tests" Presentation="&amp;lt;FamilieWandelPad.Tests&amp;gt;" /&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7e37ff7a_002D6b67_002D4c27_002Dacde_002D1925f47e6a1d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;FamilieWandelPad.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\Jelle Metzlar\RiderProjects\FamilieWandelPad\FamilieWandelPad.Tests" Presentation="&amp;lt;FamilieWandelPad.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ea3e355f_002Df0aa_002D466d_002D9307_002Dab65b572baf9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestResourceTranslations" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::AFB382D0-3EEE-4F07-B03C-D1A427E67E1C::.NETCoreApp,Version=v3.1::FamilieWandelPad.Tests.LocalizationTest.TestResourceTranslations&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Waypoint/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
