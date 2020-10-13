@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.Widget;
+using AndroidX.AppCompat.Widget;
 using FamilieWandelPad.Database.Repositories;
 using Plugin.CurrentActivity;
 using Plugin.Permissions;
